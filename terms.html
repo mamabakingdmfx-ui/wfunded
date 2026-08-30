@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Use | Wfunded</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --bg:#030912;
+      --panel:#07121e;
+      --border:#17283a;
+      --text:#f4f7fb;
+      --muted:#8d9aaa;
+      --purple:#7c3cff;
+      --purple-light:#a679ff;
+      --gold:#e7b94d;
+    }
+
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:
+        radial-gradient(circle at 85% 8%,rgba(124,60,255,.09),transparent 28%),
+        var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    nav{
+      min-height:72px;
+      padding:0 4%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      border-bottom:1px solid var(--border);
+      background:rgba(3,9,18,.92);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:24px;
+      font-weight:800;
+    }
+
+    .logo-mark{
+      color:var(--purple-light);
+      font-size:30px;
+      font-weight:900;
+      transform:skew(-15deg);
+    }
+
+    .back{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .back:hover{
+      color:white;
+    }
+
+    .page{
+      width:min(960px,92%);
+      margin:42px auto 70px;
+    }
+
+    .hero{
+      border:1px solid var(--border);
+      border-radius:15px;
+      padding:38px;
+      background:
+        radial-gradient(circle at 85% 25%,rgba(124,60,255,.14),transparent 35%),
+        var(--panel);
+      margin-bottom:20px;
+    }
+
+    .eyebrow{
+      color:var(--purple-light);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:11px;
+      font-weight:700;
+      margin-bottom:11px;
+    }
+
+    .hero h1{
+      font-size:clamp(36px,6vw,54px);
+      margin-bottom:12px;
+    }
+
+    .hero p{
+      color:var(--muted);
+      line-height:1.7;
+      font-size:13px;
+      max-width:720px;
+    }
+
+    .updated{
+      margin-top:18px;
+      color:#67768a;
+      font-size:11px;
+    }
+
+    .notice{
+      border:1px solid #493a1b;
+      background:rgba(231,185,77,.05);
+      border-radius:11px;
+      padding:18px;
+      margin-bottom:20px;
+    }
+
+    .notice strong{
+      display:block;
+      color:var(--gold);
+      margin-bottom:7px;
+      font-size:13px;
+    }
+
+    .notice p{
+      color:#a0a9b5;
+      font-size:11px;
+      line-height:1.7;
+    }
+
+    .content{
+      border:1px solid var(--border);
+      background:var(--panel);
+      border-radius:14px;
+      padding:32px;
+    }
+
+    .section{
+      padding:24px 0;
+      border-bottom:1px solid #112233;
+    }
+
+    .section:first-child{
+      padding-top:0;
+    }
+
+    .section:last-child{
+      border-bottom:none;
+      padding-bottom:0;
+    }
+
+    .number{
+      color:var(--purple-light);
+      font-size:11px;
+      font-weight:800;
+      margin-bottom:7px;
+    }
+
+    .section h2{
+      font-size:20px;
+      margin-bottom:11px;
+    }
+
+    .section p{
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.8;
+      margin-bottom:10px;
+    }
+
+    .section ul{
+      padding-left:20px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.8;
+      margin-top:9px;
+    }
+
+    .section li{
+      margin-bottom:5px;
+    }
+
+    .highlight{
+      padding:14px;
+      border-left:3px solid var(--purple);
+      background:#050f1a;
+      border-radius:5px;
+      color:#a8b2bf;
+      font-size:11px;
+      line-height:1.7;
+      margin-top:12px;
+    }
+
+    .legal-links{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:20px;
+    }
+
+    .legal-links a{
+      border:1px solid var(--border);
+      border-radius:8px;
+      padding:10px 14px;
+      color:#b7c1cd;
+      font-size:11px;
+    }
+
+    .legal-links a:hover{
+      border-color:#563394;
+      color:white;
+    }
+
+    footer{
+      border-top:1px solid var(--border);
+      padding:30px 4%;
+      color:var(--muted);
+      font-size:11px;
+      text-align:center;
+    }
+
+    @media(max-width:600px){
+      .page{
+        width:94%;
+        margin-top:24px;
+      }
+
+      .hero,
+      .content{
+        padding:23px;
+      }
+
+      nav{
+        padding:0 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+
+  <a href="index.html" class="logo">
+    <span class="logo-mark">W</span>
+    <span>Wfunded</span>
+  </a>
+
+  <a href="support.html" class="back">
+    ← Back to Support
+  </a>
+
+</nav>
+
+
+<main class="page">
+
+  <section class="hero">
+
+    <div class="eyebrow">
+      Wfunded Legal
+    </div>
+
+    <h1>Terms of Use</h1>
+
+    <p>
+      These Terms describe the intended rules for accessing and using the
+      Wfunded website, account interfaces and platform services.
+    </p>
+
+    <div class="updated">
+      Last updated: August 2026
+    </div>
+
+  </section>
+
+
+  <div class="notice">
+
+    <strong>Draft Terms Notice</strong>
+
+    <p>
+      Wfunded is currently a prototype. These Terms are a preliminary
+      framework and are not a substitute for jurisdiction-specific legal
+      advice. They should be reviewed and finalized by qualified counsel
+      before Wfunded provides live financial services.
+    </p>
+
+  </div>
+
+
+  <article class="content">
+
+    <section class="section">
+
+      <div class="number">01</div>
+
+      <h2>Acceptance of Terms</h2>
+
+      <p>
+        By accessing or using Wfunded, users agree to comply with the Terms
+        of Use that apply to the platform at that time.
+      </p>
+
+      <p>
+        If a user does not agree with the applicable Terms, they should not
+        use the relevant services.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">02</div>
+
+      <h2>Eligibility</h2>
+
+      <p>
+        Users must satisfy all eligibility requirements applicable to the
+        services they intend to use, including minimum age, residency,
+        identity verification and jurisdictional restrictions.
+      </p>
+
+      <p>
+        Certain services may not be available in every country or region.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">03</div>
+
+      <h2>Account Registration</h2>
+
+      <p>
+        Users may be required to create an account and provide accurate,
+        complete and current information.
+      </p>
+
+      <p>
+        Users are responsible for keeping account information up to date and
+        for maintaining the confidentiality of their login credentials.
+      </p>
+
+      <div class="highlight">
+        The current Wfunded GitHub Pages prototype does not create secure
+        production accounts and should not be used for real customer
+        credentials.
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">04</div>
+
+      <h2>Account Security</h2>
+
+      <p>
+        Users should use strong passwords, protect authentication codes and
+        immediately report suspected unauthorized access.
+      </p>
+
+      <p>
+        Wfunded may implement additional security measures such as
+        multi-factor authentication, login monitoring and account recovery
+        procedures.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">05</div>
+
+      <h2>Identity & Compliance Checks</h2>
+
+      <p>
+        Before certain services are provided, Wfunded may require identity,
+        residency, source-of-funds or other information necessary to satisfy
+        applicable legal, fraud-prevention or compliance requirements.
+      </p>
+
+      <p>
+        Access to services may be delayed, limited or unavailable where
+        required information cannot be verified.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">06</div>
+
+      <h2>Market Information</h2>
+
+      <p>
+        Market information may include prices, percentage changes, charts,
+        asset descriptions and other market-related content.
+      </p>
+
+      <p>
+        Market information may be delayed, incomplete or supplied by third
+        parties. Users should not assume that information is real-time unless
+        it is expressly identified as live market data.
+      </p>
+
+      <div class="highlight">
+        Market prices currently shown on the Wfunded prototype are
+        illustrative and are not represented as live quotations.
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">07</div>
+
+      <h2>Trading & Investment Risk</h2>
+
+      <p>
+        Trading and investing involve financial risk. Asset prices may rise
+        or fall significantly, and users may lose some or all capital
+        committed to an investment or trade.
+      </p>
+
+      <p>
+        Historical or hypothetical performance does not guarantee future
+        performance.
+      </p>
+
+      <p>
+        Users should review all relevant terms and risk information before
+        making financial decisions.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">08</div>
+
+      <h2>No Guaranteed Returns</h2>
+
+      <p>
+        Wfunded must not be understood as guaranteeing profits, fixed trading
+        outcomes or future investment performance unless a legally valid
+        product expressly provides such terms and all required disclosures
+        have been made.
+      </p>
+
+      <div class="highlight">
+        Any return figures currently displayed in Wfunded investment-plan
+        prototypes are mathematical illustrations based on example scenarios,
+        not guaranteed or verified investment performance.
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">09</div>
+
+      <h2>Deposits & Withdrawals</h2>
+
+      <p>
+        If deposits or withdrawals are introduced, they will be subject to
+        applicable payment, verification, security, processing and compliance
+        requirements.
+      </p>
+
+      <p>
+        Processing times, supported methods, limits and fees should be clearly
+        disclosed before live money movement is enabled.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">10</div>
+
+      <h2>Fees & Charges</h2>
+
+      <p>
+        Any fees, spreads, commissions, subscription charges or other costs
+        associated with Wfunded services should be disclosed before they are
+        incurred.
+      </p>
+
+      <p>
+        Fees may vary depending on products, payment methods, jurisdictions
+        or third-party providers.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">11</div>
+
+      <h2>Prohibited Use</h2>
+
+      <p>
+        Users must not misuse Wfunded or attempt to interfere with its
+        operation. Prohibited conduct may include:
+      </p>
+
+      <ul>
+        <li>Fraudulent or deceptive activity.</li>
+        <li>Unauthorized access to another user's account.</li>
+        <li>Attempts to bypass security systems.</li>
+        <li>Use of stolen or false identity information.</li>
+        <li>Money laundering or other unlawful financial activity.</li>
+        <li>Introducing malicious code or disrupting platform services.</li>
+        <li>Using Wfunded in violation of applicable law.</li>
+      </ul>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">12</div>
+
+      <h2>Suspension or Restriction</h2>
+
+      <p>
+        Wfunded may need to restrict or suspend access where reasonably
+        necessary for security, suspected fraud, legal obligations, technical
+        issues or violations of applicable platform terms.
+      </p>
+
+      <p>
+        Any such powers should be implemented consistently with applicable
+        law and contractual obligations.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">13</div>
+
+      <h2>Third-Party Services</h2>
+
+      <p>
+        Wfunded may rely on third-party providers for services such as market
+        data, hosting, authentication, payments, verification or custody.
+      </p>
+
+      <p>
+        Certain third-party services may be governed by their own terms,
+        policies and availability requirements.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">14</div>
+
+      <h2>Intellectual Property</h2>
+
+      <p>
+        The Wfunded name, interface, branding, site design and original
+        platform materials may be protected by applicable intellectual
+        property laws.
+      </p>
+
+      <p>
+        Users may not reproduce, copy or commercially exploit protected
+        materials without authorization except where permitted by law.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">15</div>
+
+      <h2>Platform Availability</h2>
+
+      <p>
+        Wfunded may occasionally be unavailable due to maintenance,
+        upgrades, security issues, external service interruptions or events
+        outside reasonable control.
+      </p>
+
+      <p>
+        No digital platform can guarantee uninterrupted or error-free access
+        at all times.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">16</div>
+
+      <h2>Limitation of Liability</h2>
+
+      <p>
+        Any limitation of liability applicable to live Wfunded services must
+        be drafted in accordance with the laws governing those services and
+        must not exclude rights or liabilities that cannot legally be
+        excluded.
+      </p>
+
+      <p>
+        This section therefore requires jurisdiction-specific legal review
+        before production use.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">17</div>
+
+      <h2>Account Closure</h2>
+
+      <p>
+        Procedures for closing an account should address outstanding
+        transactions, withdrawals, record-retention requirements and any
+        continuing obligations imposed by applicable law.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">18</div>
+
+      <h2>Changes to the Terms</h2>
+
+      <p>
+        Wfunded may update these Terms as the platform, products or legal
+        requirements change.
+      </p>
+
+      <p>
+        Material changes should be communicated to users using appropriate
+        notices and, where required, renewed acceptance.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">19</div>
+
+      <h2>Governing Law & Disputes</h2>
+
+      <p>
+        The governing law, courts, dispute-resolution procedures and
+        complaint process should be specified once Wfunded's operating
+        entity and jurisdictions have been formally established.
+      </p>
+
+      <p>
+        These provisions should not be invented or added until the relevant
+        legal structure is confirmed.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="number">20</div>
+
+      <h2>Contact</h2>
+
+      <p>
+        Questions about these Terms can be submitted through the Wfunded
+        Support Center. Formal company and legal contact information should
+        be added once verified.
+      </p>
+
+      <div class="legal-links">
+        <a href="support.html">Support Center</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="risk.html">Risk Disclosure</a>
+      </div>
+
+    </section>
+
+  </article>
+
+</main>
+
+
+<footer>
+  © 2026 Wfunded. All rights reserved.
+</footer>
+
+</body>
+</html>
