@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Wfunded | Trade. Invest. Grow.</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #030912;
+      --panel: #07121e;
+      --panel-2: #0a1725;
+      --border: #17283a;
+      --text: #f4f7fb;
+      --muted: #8d9aaa;
+      --purple: #7c3cff;
+      --purple-light: #9b6cff;
+      --green: #25d98a;
+      --red: #ff4f65;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 75% 15%, rgba(124,60,255,.12), transparent 30%),
+        radial-gradient(circle at 10% 50%, rgba(0,110,255,.06), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      height: 72px;
+      padding: 0 4%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(3,9,18,.88);
+      backdrop-filter: blur(15px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .logo-mark {
+      color: var(--purple-light);
+      font-size: 30px;
+      font-weight: 900;
+      transform: skew(-15deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      color: #b9c2ce;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .login {
+      padding: 11px 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: transparent;
+      color: white;
+    }
+
+    .create {
+      padding: 11px 20px;
+      border: 0;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #6930e8, #8b4dff);
+      color: white;
+      font-weight: 700;
+    }
+
+    /* TICKER */
+
+    .ticker {
+      margin: 18px 4%;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(7,18,30,.7);
+      display: flex;
+      gap: 28px;
+      overflow: hidden;
+      white-space: nowrap;
+      color: #aeb9c7;
+      font-size: 13px;
+    }
+
+    .ticker strong {
+      color: white;
+    }
+
+    .up {
+      color: var(--green);
+    }
+
+    .down {
+      color: var(--red);
+    }
+
+    /* HERO */
+
+    .hero {
+      margin: 20px 4%;
+      min-height: 430px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 70% 50%, rgba(80,30,180,.17), transparent 35%),
+        linear-gradient(135deg, #06101c, #040b14);
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      padding: 70px 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      color: var(--purple-light);
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 5vw, 72px);
+      line-height: 1.02;
+      margin-bottom: 22px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #8a55ff, #b185ff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 560px;
+      color: #9ba8b8;
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      padding: 14px 24px;
+      border-radius: 9px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, #6930e8, #914fff);
+      color: white;
+      border: none;
+    }
+
+    .secondary-btn {
+      background: rgba(255,255,255,.02);
+      color: white;
+    }
+
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 350px;
+    }
+
+    .orb {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(124,60,255,.35);
+      box-shadow:
+        0 0 70px rgba(124,60,255,.15),
+        inset 0 0 70px rgba(124,60,255,.08);
+    }
+
+    .orb::before,
+    .orb::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(124,60,255,.25);
+      border-radius: 50%;
+      inset: 30px;
+    }
+
+    .orb::after {
+      inset: 70px;
+    }
+
+    .phone {
+      width: 180px;
+      height: 350px;
+      border: 5px solid #1e2938;
+      border-radius: 28px;
+      background: #050b13;
+      transform: rotate(10deg);
+      box-shadow: 0 30px 70px rgba(0,0,0,.6);
+      z-index: 2;
+      padding: 28px 14px;
+    }
+
+    .phone-top {
+      color: #7c3cff;
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .mini-chart {
+      height: 130px;
+      position: relative;
+      overflow: hidden;
+      margin: 25px 0;
+    }
+
+    .mini-chart svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .coin {
+      position: absolute;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+      z-index: 3;
+    }
+
+    .coin.btc {
+      background: #f7931a;
+      top: 55px;
+      left: 30px;
+    }
+
+    .coin.eth {
+      background: #627eea;
+      right: 40px;
+      top: 110px;
+    }
+
+    .coin.usd {
+      background: #2479d8;
+      right: 20px;
+      bottom: 80px;
+    }
+
+    /* SECTION */
+
+    .section {
+      margin: 28px 4%;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .section-header h2 {
+      font-size: 24px;
+    }
+
+    .section-header a {
+      color: var(--purple-light);
+      font-size: 14px;
+    }
+
+    /* MARKET CARDS */
+
+    .tabs {
+      display: flex;
+      gap: 22px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tabs .active {
+      color: var(--purple-light);
+      border-bottom: 2px solid var(--purple);
+      padding-bottom: 8px;
+    }
+
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .market-card {
+      background: linear-gradient(145deg, #07121e, #081521);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 17px;
+      transition: .25s;
+    }
+
+    .market-card:hover {
+      transform: translateY(-3px);
+      border-color: #3a2765;
+    }
+
+    .asset {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .asset-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1c2735;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .asset-name {
+      font-weight: 700;
+    }
+
+    .asset-symbol {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    .sparkline {
+      height: 48px;
+      margin: 10px 0;
+    }
+
+    .sparkline svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 5px;
+    }
+
+    .price {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .change {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* INVESTMENT */
+
+    .investment-area {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 14px;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .plan {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: linear-gradient(145deg, #081521, #07101b);
+    }
+
+    .plan-name {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .duration {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .return {
+      font-size: 31px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .return-label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .minimum {
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      color: #b4bfcc;
+      font-size: 13px;
+    }
+
+    .plan button {
+      margin-top: 18px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 7px;
+      border: 1px solid #5930aa;
+      background: rgba(124,60,255,.08);
+      color: #b894ff;
+    }
+
+    .investment-info {
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 22px;
+      background:
+        radial-gradient(circle at 80% 70%, rgba(124,60,255,.18), transparent 40%),
+        #07121e;
+    }
+
+    .investment-info h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .investment-info p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    /* FEATURES */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .feature {
+      border: 1px solid var(--border);
+      background: #07121e;
+      padding: 24px;
+      border-radius: 11px;
+    }
+
+    .feature-icon {
+      color: var(--purple-light);
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .feature h3 {
+      margin-bottom: 9px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* CTA */
+
+    .cta {
+      margin: 35px 4%;
+      border: 1px solid #2b1a55;
+      border-radius: 13px;
+      padding: 40px;
+      background:
+        radial-gradient(circle at 80% 50%, rgba(124,60,255,.18), transparent 40%),
+        #07111d;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .cta h2 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .cta p {
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 50px;
+      padding: 40px 4%;
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 30px;
+    }
+
+    footer h4 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    footer a {
+      display: block;
+      margin-bottom: 9px;
+      font-size: 13px;
+    }
+
+    .footer-brand p {
+      max-width: 320px;
+      line-height: 1.6;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    .copyright {
+      border-top: 1px solid var(--border);
+      margin-top: 30px;
+      padding-top: 20px;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .disclaimer {
+      margin-top: 15px;
+      font-size: 11px;
+      color: #647182;
+      line-height: 1.6;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 1000px) {
+      .market-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .plans {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .investment-area {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 750px) {
+      nav {
+        height: auto;
+        padding: 15px 5%;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        gap: 20px;
+        padding-bottom: 3px;
+      }
+
+      .nav-actions {
+        margin-left: auto;
+      }
+
+      .ticker {
+        margin: 12px 3%;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content {
+        padding: 50px 7%;
+      }
+
+      .hero-visual {
+        min-height: 330px;
+      }
+
+      .market-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .market-grid,
+      .plans {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-actions .login {
+        display: none;
+      }
+
+      .phone {
+        transform: rotate(7deg) scale(.85);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <a href="#" class="logo">
+      <span class="logo-mark">W</span>
+      <span>Wfunded</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#markets">Markets</a>
+      <a href="#invest">Invest</a>
+      <a href="#platform">Trading Platform</a>
+      <a href="#about">About Us</a>
+      <a href="#support">Support</a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="login">Login</button>
+      <button class="create">Create Account</button>
+    </div>
+  </nav>
+
+
+  <!-- DEMO MARKET BAR -->
+
+  <div class="ticker">
+    <span>₿ <strong>BTC</strong> $112,450.00 <span class="up">+2.84%</span></span>
+    <span>Ξ <strong>ETH</strong> $4,612.30 <span class="down">-1.21%</span></span>
+    <span><strong>AAPL</strong> $195.38 <span class="up">+1.47%</span></span>
+    <span><strong>TSLA</strong> $178.64 <span class="down">-0.63%</span></span>
+    <span>◉ <strong>GOLD</strong> $2,356.10 <span class="up">+0.75%</span></span>
+  </div>
+
+
+  <!-- HERO -->
+
+  <section class="hero" id="platform">
+
+    <div class="hero-content">
+      <div class="eyebrow">The future of trading</div>
+
+      <h1>
+        Trade. Invest.<br>
+        Grow With <span class="gradient-text">Wfunded</span>
+      </h1>
+
+      <p>
+        A professional financial platform designed to help
+        you explore markets, manage your portfolio and make
+        informed financial decisions.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="primary-btn">Start Trading</button>
+        <button class="secondary-btn">Explore Markets</button>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="orb"></div>
+
+      <div class="coin btc">₿</div>
+      <div class="coin eth">Ξ</div>
+      <div class="coin usd">$</div>
+
+      <div class="phone">
+        <div class="phone-top">WFUNDED</div>
+
+        <div>
+          <small style="color:#78889a;">Portfolio</small>
+          <h3 style="margin-top:6px;">$24,560.80</h3>
+        </div>
+
+        <div class="mini-chart">
+          <svg viewBox="0 0 200 130" preserveAspectRatio="none">
+            <polyline
+              points="0,110 20,100 35,106 50,82 70,91 88,60 105,72 125,45 145,57 165,30 180,40 200,15"
+              fill="none"
+              stroke="#25d98a"
+              stroke-width="3"
+            />
+          </svg>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;color:#8492a3;font-size:11px;">
+          <span>Performance</span>
+          <span style="color:#25d98a;">+11.08%</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- MARKETS -->
+
+  <section class="section" id="markets">
+
+    <div class="section-header">
+      <h2>Market Overview</h2>
+      <a href="#">View all markets →</a>
+    </div>
+
+    <div class="tabs">
+      <span class="active">Crypto</span>
+      <span>Stocks</span>
+      <span>Forex</span>
+      <span>Commodities</span>
+      <span>Indices</span>
+    </div>
+
+    <div class="market-grid">
+
+      <!-- BITCOIN -->
+      <div class="market-card">
+        <div class="asset">
+          <div class="asset-icon">₿</div>
+          <div>
+            <div class="asset-name">Bitcoin</div>
+            <div class="asset-symbol">BTC</div>
+          </div>
+        </div>
+
+        <div class="sparkline">
+          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+            <polyline points="0,42 20,36 35,40 50,28 65,33 80,21 95,27 110,15 125,22 145,12 160,17 180,7 200,10"
+              fill="none" stroke="#25d98a" stroke-width="2.5"/>
+          </svg>
+        </div>
+
+        <div class="price-row">
+          <div class="price">$112,450</div>
+          <div class="change up">+2.84%</div>
+        </div>
+      </div>
+
+
+      <!-- ETHEREUM -->
+      <div class="market-card">
+        <div class="asset">
+          <div class="asset-icon">Ξ</div>
+          <div>
+            <div class="asset-name">Ethereum</div>
+            <div class="asset-symbol">ETH</div>
+          </div>
+        </div>
+
+        <div class="sparkline">
+          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+            <polyline points="0,12 18,24 32,17 50,32 68,22 84,38 102,29 120,35 140,27 158,39 177,34 200,42"
+              fill="none" stroke="#ff4f65" stroke-width="2.5"/>
+          </svg>
+        </div>
+
+        <div class="price-row">
+          <div class="price">$4,612</div>
+          <div class="change down">-1.21%</div>
+        </div>
+      </div>
+
+
+      <!-- SOLANA -->
+      <div class="market-card">
+        <div class="asset">
+          <div class="asset-icon">S</div>
+          <div>
+            <div class="asset-name">Solana</div>
+            <div class="asset-symbol">SOL</div>
+          </div>
+        </div>
+
+        <div class="sparkline">
+          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+            <polyline points="0,39 20,31 35,35 50,24 68,29 84,17 100,24 115,15 130,20 150,8 170,15 185,5 200,8"
+              fill="none" stroke="#25d98a" stroke-width="2.5"/>
+          </svg>
+        </div>
+
+        <div class="price-row">
+          <div class="price">$198.40</div>
+          <div class="change up">+4.18%</div>
+        </div>
+      </div>
+
+
+      <!-- XRP -->
+      <div class="market-card">
+        <div class="asset">
+          <div class="asset-icon">X</div>
+          <div>
+            <div class="asset-name">XRP</div>
+            <div class="asset-symbol">XRP</div>
+          </div>
+        </div>
+
+        <div class="sparkline">
+          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+            <polyline points="0,35 20,30 40,33 55,22 72,27 90,20 108,24 125,12 145,20 162,16 180,22 200,10"
+              fill="none" stroke="#25d98a" stroke-width="2.5"/>
+          </svg>
+        </div>
+
+        <div class="price-row">
+          <div class="price">$0.62</div>
+          <div class="change up">+0.86%</div>
+        </div>
+      </div>
+
+
+      <!-- CARDANO -->
+      <div class="market-card">
+        <div class="asset">
+          <div class="asset-icon">A</div>
+          <div>
+            <div class="asset-name">Cardano</div>
+            <div class="asset-symbol">ADA</div>
+          </div>
+        </div>
+
+        <div class="sparkline">
+          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+            <polyline points="0,10 20,18 40,12 60,25 80,21 100,31 120,28 140,37 160,32 180,42 200,38"
+              fill="none" stroke="#ff4f65" stroke-width="2.5"/>
+          </svg>
+        </div>
+
+        <div class="price-row">
+          <div class="price">$0.78</div>
+          <div class="change down">-0.42%</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- INVESTMENT -->
+
+  <section class="section" id="invest">
+
+    <div class="section-header">
+      <h2>Investment Plans</h2>
+      <a href="#">View all plans →</a>
+    </div>
+
+    <div class="investment-area">
+
+      <div class="plans">
+
+        <div class="plan">
+          <div class="plan-name">Starter Plan</div>
+          <div class="duration">7 Days</div>
+          <div class="return">2.50%</div>
+          <div class="return-label">Example projected return</div>
+          <div class="minimum">Minimum: $100</div>
+          <button>View Plan</button>
+        </div>
+
+        <div class="plan">
+          <div class="plan-name">Growth Plan</div>
+          <div class="duration">30 Days</div>
+          <div class="return">8.00%</div>
+          <div class="return-label">Example projected return</div>
+          <div class="minimum">Minimum: $500</div>
+          <button>View Plan</button>
+        </div>
+
+        <div class="plan">
+          <div class="plan-name">Advanced Plan</div>
+          <div class="duration">90 Days</div>
+          <div class="return">18.00%</div>
+          <div class="return-label">Example projected return</div>
+          <div class="minimum">Minimum: $1,000</div>
+          <button>View Plan</button>
+        </div>
+
+        <div class="plan">
+          <div class="plan-name">Professional Plan</div>
+          <div class="duration">180 Days</div>
+          <div class="return">35.00%</div>
+          <div class="return-label">Example projected return</div>
+          <div class="minimum">Minimum: $5,000</div>
+          <button>View Plan</button>
+        </div>
+
+      </div>
+
+      <div class="investment-info">
+        <h3>Build Your Strategy</h3>
+        <p>
+          Explore different investment opportunities and
+          choose an approach that matches your financial
+          objectives and risk tolerance.
+        </p>
+
+        <br>
+
+        <p>
+          Investment returns are not guaranteed. Actual
+          results depend on market conditions and applicable
+          product terms.
+        </p>
+
+        <br>
+
+        <button class="primary-btn" style="width:100%;">
+          Explore Investments
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FEATURES -->
+
+  <section class="section">
+
+    <div class="section-header">
+      <h2>Why Choose Wfunded?</h2>
+    </div>
+
+    <div class="features">
+
+      <div class="feature">
+        <div class="feature-icon">◈</div>
+        <h3>Secure Accounts</h3>
+        <p>
+          Modern account security designed to help protect
+          user information and account access.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">⌁</div>
+        <h3>Advanced Tools</h3>
+        <p>
+          Market information, portfolio tools and a clean
+          interface designed for informed decisions.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">◉</div>
+        <h3>Dedicated Support</h3>
+        <p>
+          Access support resources and contact options when
+          you need assistance with your account.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+
+  <section class="cta">
+    <div>
+      <h2>Start Your Wfunded Journey</h2>
+      <p>Create an account and explore the Wfunded platform.</p>
+    </div>
+
+    <button class="primary-btn">Create Account</button>
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer id="about">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-mark">W</span>
+          <span>Wfunded</span>
+        </div>
+
+        <p>
+          A professional financial platform concept
+          focused on markets, portfolio tools and a
+          modern user experience.
+        </p>
+      </div>
+
+      <div>
+        <h4>Platform</h4>
+        <a href="#markets">Markets</a>
+        <a href="#platform">Trading Platform</a>
+        <a href="#invest">Invest</a>
+      </div>
+
+      <div id="support">
+        <h4>Company</h4>
+        <a href="#about">About Wfunded</a>
+        <a href="#">Contact</a>
+        <a href="#">Support</a>
+      </div>
+
+      <div>
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Risk Disclosure</a>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      <span>© 2026 Wfunded. All rights reserved.</span>
+      <span>Professional financial platform</span>
+    </div>
+
+    <div class="disclaimer">
+      Demo interface: market values and investment figures shown
+      on this initial prototype are illustrative and are not
+      live financial data or investment guarantees.
+    </div>
+
+  </footer>
+
+</body>
+  </html>
