@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Investment Plans | Wfunded</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #030912;
+      --panel: #07121e;
+      --panel-light: #0a1725;
+      --border: #17283a;
+      --text: #f4f7fb;
+      --muted: #8997a8;
+      --purple: #7c3cff;
+      --purple-light: #a679ff;
+      --green: #25d98a;
+      --red: #ff4f65;
+      --gold: #e8b84a;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(
+          circle at 80% 10%,
+          rgba(124, 60, 255, 0.12),
+          transparent 32%
+        ),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      min-height: 72px;
+      padding: 0 4%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(3, 9, 18, 0.92);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .logo-mark {
+      color: var(--purple-light);
+      font-size: 30px;
+      font-weight: 900;
+      transform: skew(-15deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      color: #b9c2ce;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      color: white;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .login,
+    .create {
+      padding: 11px 20px;
+      border-radius: 8px;
+      color: white;
+    }
+
+    .login {
+      border: 1px solid var(--border);
+      background: transparent;
+    }
+
+    .create {
+      border: none;
+      background: linear-gradient(135deg, #6930e8, #8b4dff);
+      font-weight: 700;
+    }
+
+    /* MAIN */
+
+    .page {
+      width: min(1200px, 92%);
+      margin: 38px auto 70px;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 46px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background:
+        radial-gradient(
+          circle at 80% 50%,
+          rgba(124, 60, 255, 0.18),
+          transparent 38%
+        ),
+        linear-gradient(145deg, #07121e, #050d17);
+      margin-bottom: 34px;
+    }
+
+    .eyebrow {
+      color: var(--purple-light);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 13px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 62px);
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 720px;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* SECTION HEADER */
+
+    .section-header {
+      margin: 32px 0 18px;
+    }
+
+    .section-header h2 {
+      font-size: 26px;
+      margin-bottom: 7px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* PLAN GRID */
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .plan {
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(12, 27, 43, 0.98),
+          rgba(5, 15, 26, 0.98)
+        );
+      transition: 0.25s;
+      overflow: hidden;
+    }
+
+    .plan:hover {
+      transform: translateY(-4px);
+      border-color: #57379c;
+    }
+
+    .plan.featured {
+      border-color: #633bb5;
+      box-shadow: 0 0 35px rgba(124, 60, 255, 0.08);
+    }
+
+    .plan::before {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(124, 60, 255, 0.07);
+      top: -70px;
+      right: -70px;
+    }
+
+    .plan-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 22px;
+    }
+
+    .plan-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124, 60, 255, 0.14);
+      color: var(--purple-light);
+      font-size: 20px;
+    }
+
+    .duration-badge {
+      padding: 7px 10px;
+      border: 1px solid #3c2c64;
+      border-radius: 20px;
+      color: var(--purple-light);
+      font-size: 11px;
+    }
+
+    .plan h3 {
+      font-size: 21px;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 22px;
+    }
+
+    .range {
+      padding: 17px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 18px;
+    }
+
+    .range-label {
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 7px;
+    }
+
+    .range-value {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .profit-area {
+      margin-bottom: 22px;
+    }
+
+    .profit-title {
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 7px;
+    }
+
+    .profit-value {
+      color: var(--green);
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+    .profit-small {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    .examples {
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+
+    .examples-title {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .example-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(23, 40, 58, 0.7);
+      font-size: 13px;
+    }
+
+    .example-row:last-child {
+      border-bottom: none;
+    }
+
+    .deposit {
+      color: #b4c0ce;
+    }
+
+    .receive {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .plan-btn {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      border: 1px solid #6440ab;
+      background: rgba(124, 60, 255, 0.1);
+      color: #c3a6ff;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* CALCULATOR */
+
+    .calculator {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--panel);
+      margin-top: 30px;
+    }
+
+    .calculator h2 {
+      margin-bottom: 8px;
+    }
+
+    .calculator-text {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .field {
+      margin-bottom: 15px;
+    }
+
+    .field label {
+      display: block;
+      color: #9ba8b8;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      background: #040d17;
+      border: 1px solid var(--border);
+      color: white;
+      padding: 13px;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: #6c3fd4;
+    }
+
+    .result {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 12px;
+      background:
+        radial-gradient(
+          circle at 80% 30%,
+          rgba(124,60,255,.16),
+          transparent 40%
+        ),
+        #050e19;
+      border: 1px solid var(--border);
+      padding: 28px;
+    }
+
+    .result-label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .result-amount {
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--green);
+      margin-bottom: 17px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .result-box {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 13px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .result-box span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      margin-bottom: 5px;
+    }
+
+    .result-box strong {
+      font-size: 14px;
+    }
+
+    /* HOW IT WORKS */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .step {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 11px;
+      padding: 20px;
+    }
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(124,60,255,.13);
+      color: var(--purple-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .step h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* RISK NOTICE */
+
+    .notice {
+      margin-top: 32px;
+      padding: 23px;
+      border-radius: 11px;
+      border: 1px solid #493a1b;
+      background: rgba(232, 184, 74, 0.05);
+    }
+
+    .notice h3 {
+      color: var(--gold);
+      margin-bottom: 9px;
+      font-size: 15px;
+    }
+
+    .notice p {
+      color: #9fa8b5;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 4%;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media(max-width: 900px) {
+      .plans {
+        grid-template-columns: 1fr;
+      }
+
+      .calculator {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      nav {
+        padding: 14px 4%;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+      }
+    }
+
+    @media(max-width: 520px) {
+      .page {
+        width: 94%;
+      }
+
+      .hero {
+        padding: 28px 22px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-actions .login {
+        display: none;
+      }
+
+      .calculator {
+        padding: 20px;
+      }
+
+      .result-amount {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+
+  <a href="index.html" class="logo">
+    <span class="logo-mark">W</span>
+    <span>Wfunded</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="markets.html">Markets</a>
+    <a href="invest.html" class="active">Invest</a>
+    <a href="platform.html">Trading Platform</a>
+    <a href="about.html">About Us</a>
+    <a href="support.html">Support</a>
+  </div>
+
+  <div class="nav-actions">
+    <button class="login">Login</button>
+    <button class="create">Create Account</button>
+  </div>
+
+</nav>
+
+
+<main class="page">
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="eyebrow">
+      Wfunded Trading Investment
+    </div>
+
+    <h1>Trading Investment Plans</h1>
+
+    <p>
+      Explore Wfunded's investment-plan interface with
+      different capital ranges, durations and illustrated
+      profit scenarios.
+    </p>
+
+  </section>
+
+
+  <div class="section-header">
+    <h2>Choose Your Plan</h2>
+    <p>
+      Select a duration and capital range that matches
+      your investment profile.
+    </p>
+  </div>
+
+
+  <!-- PLANS -->
+
+  <section class="plans">
+
+
+    <!-- 3 DAYS -->
+
+    <article class="plan">
+
+      <div class="plan-top">
+
+        <div class="plan-icon">
+          3D
+        </div>
+
+        <div class="duration-badge">
+          3 Days
+        </div>
+
+      </div>
+
+      <h3>3 Days Plan</h3>
+
+      <div class="subtitle">
+        Short-duration trading plan
+      </div>
+
+      <div class="range">
+
+        <div class="range-label">
+          Capital Range
+        </div>
+
+        <div class="range-value">
+          $200 – $1,000
+        </div>
+
+      </div>
+
+      <div class="profit-area">
+
+        <div class="profit-title">
+          Illustrated Profit
+        </div>
+
+        <div class="profit-value">
+          +1,900%
+        </div>
+
+        <div class="profit-small">
+          Illustrated total received:
+          2,000% of starting capital.
+        </div>
+
+      </div>
+
+      <div class="examples">
+
+        <div class="examples-title">
+          Capital examples
+        </div>
+
+        <div class="example-row">
+          <span class="deposit">$200</span>
+          <span class="receive">→ $4,000</span>
+        </div>
+
+        <div class="example-row">
+          <span class="deposit">$500</span>
+          <span class="receive">→ $10,000</span>
+        </div>
+
+        <div class="example-row">
+          <span class="deposit">$1,000</span>
+          <span class="receive">→ $20,000</span>
+        </div>
+
+      </div>
+
+      <button class="plan-btn">
+        Select 3 Days Plan
+      </button>
+
+    </article>
+
+
+    <!-- 5 DAYS -->
+
+    <article class="plan featured">
+
+      <div class="plan-top">
+
+        <div class="plan-icon">
+          5D
+        </div>
+
+        <div class="duration-badge">
+          5 Days
+        </div>
+
+      </div>
+
+      <h3>5 Days Plan</h3>
+
+      <div class="subtitle">
+        Intermediate trading plan
+      </div>
+
+      <div class="range">
+
+        <div class="range-label">
+          Capital Range
+        </div>
+
+        <div class="range-value">
+          $2,000 – $5,000
+        </div>
+
+      </div>
+
+      <div class="profit-area">
+
+        <div class="profit-title">
+          Illustrated Profit
+        </div>
+
+        <div class="profit-value">
+          +1,900%
+        </div>
+
+        <div class="profit-small">
+          Illustrated total received:
+          2,000% of starting capital.
+        </div>
+
+      </div>
+
+      <div class="examples">
+
+        <div class="examples-title">
+          Capital examples
+        </div>
+
+        <div class="example-row">
+          <span class="deposit">$2,000</span>
+          <span class="receive">→ $40,000</span>
+        </div>
+
+        <div class="example-row">
+          <span class="deposit">$4,000</span>
+          <span class="receive">→ $80,000</span>
+        </div>
+
+        <div class="example-row">
+          <span class="deposit">$5,000</span>
+          <span class="receive">→ $100,000</span>
+        </div>
+
+      </div>
+
+      <button class="plan-btn">
+        Select 5 Days Plan
+      </button>
+
+    </article>
+
+
+    <!-- 10 DAYS -->
+
+    <article class="plan">
+
+      <div class="plan-top">
+
+        <div class="plan-icon">
+          10D
+        </div>
+
+        <div class="duration-badge">
+          10 Days
+        </div>
+
+      </div>
+
+      <h3>10 Days Plan</h3>
+
+      <div class="subtitle">
+        Higher-capital trading plan
+      </div>
+
+      <div class="range">
+
+        <div class="range-label">
+          Capital Range
+        </div>
+
+        <div class="range-value">
+          $10,000 – $20,000
+        </div>
+
+      </div>
+
+      <div class="profit-area">
+
+        <div class="profit-title">
+          Illustrated Profit
+        </div>
+
+        <div class="profit-value">
+          +1,900%
+        </div>
+
+        <div class="profit-small">
+          Illustrated total received:
+          2,000% of starting capital.
+        </div>
+
+      </div>
+
+      <div class="examples">
+
+        <div class="examples-title">
+          Capital examples
+        </div>
+
+        <div class="example-row">
+          <span class="deposit">$10,000</span>
+          <span class="receive">→ $200,000</span>
+        </div>
+
+        <div class="example-row">
+          <span class="deposit">$20,000</span>
+          <span class="receive">→ $400,000</span>
+        </div>
+
+      </div>
+
+      <button class="plan-btn">
+        Select 10 Days Plan
+      </button>
+
+    </article>
+
+  </section>
+
+
+  <!-- CALCULATOR -->
+
+  <section class="calculator">
+
+    <div>
+
+      <h2>Investment Calculator</h2>
+
+      <p class="calculator-text">
+        Enter a capital amount to preview the mathematical
+        illustration associated with the selected plan.
+      </p>
+
+      <div class="field">
+
+        <label>
+          Select Plan
+        </label>
+
+        <select id="planSelect">
+
+          <option
+            value="3"
+            data-min="200"
+            data-max="1000"
+          >
+            3 Days Plan
+          </option>
+
+          <option
+            value="5"
+            data-min="2000"
+            data-max="5000"
+          >
+            5 Days Plan
+          </option>
+
+          <option
+            value="10"
+            data-min="10000"
+            data-max="20000"
+          >
+            10 Days Plan
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Capital Amount (USD)
+        </label>
+
+        <input
+          id="capital"
+          type="number"
+          value="200"
+          min="200"
+          placeholder="Enter capital amount"
+        >
+
+      </div>
+
+    </div>
+
+
+    <div class="result">
+
+      <div class="result-label">
+        Illustrated Total
+      </div>
+
+      <div
+        class="result-amount"
+        id="resultAmount"
+      >
+        $4,000
+      </div>
+
+
+      <div class="result-grid">
+
+        <div class="result-box">
+
+          <span>
+            Capital
+          </span>
+
+          <strong id="capitalDisplay">
+            $200
+          </strong>
+
+        </div>
+
+
+        <div class="result-box">
+
+          <span>
+            Illustrated Profit
+          </span>
+
+          <strong>
+            +1,900%
+          </strong>
+
+        </div>
+
+
+        <div class="result-box">
+
+          <span>
+            Duration
+          </span>
+
+          <strong id="durationDisplay">
+            3 Days
+          </strong>
+
+        </div>
+
+
+        <div class="result-box">
+
+          <span>
+            Plan Range
+          </span>
+
+          <strong id="rangeDisplay">
+            $200 – $1,000
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- HOW IT WORKS -->
+
+  <div class="section-header">
+
+    <h2>
+      How It Works
+    </h2>
+
+    <p>
+      The investment interface will eventually connect
+      to each registered user's account.
+    </p>
+
+  </div>
+
+
+  <section class="steps">
+
+    <div class="step">
+
+      <div class="step-number">
+        1
+      </div>
+
+      <h3>
+        Create Account
+      </h3>
+
+      <p>
+        Register and securely sign into your
+        Wfunded profile.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-number">
+        2
+      </div>
+
+      <h3>
+        Choose Plan
+      </h3>
+
+      <p>
+        Review available durations,
+        capital requirements and terms.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-number">
+        3
+      </div>
+
+      <h3>
+        Review Details
+      </h3>
+
+      <p>
+        Confirm applicable product
+        conditions and risk information.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-number">
+        4
+      </div>
+
+      <h3>
+        Track Activity
+      </h3>
+
+      <p>
+        Follow investment activity
+        through your Wfunded dashboard.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- RISK NOTICE -->
+
+  <div class="notice">
+
+    <h3>
+      Important Investment Notice
+    </h3>
+
+    <p>
+      The return figures currently displayed on this prototype
+      are mathematical illustrations based on the examples
+      supplied for the Wfunded interface. They must not be
+      represented to customers as guaranteed profits or verified
+      historical performance. Trading and investing involve risk,
+      including the possible loss of capital. Before a live
+      investment service is launched, its products, disclosures,
+      custody/payment arrangements and regulatory obligations
+      should be established for the jurisdictions in which
+      Wfunded operates.
+    </p>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  © 2026 Wfunded. All rights reserved.
+
+</footer>
+
+
+<script>
+
+  const planSelect =
+    document.getElementById("planSelect");
+
+  const capital =
+    document.getElementById("capital");
+
+  const resultAmount =
+    document.getElementById("resultAmount");
+
+  const capitalDisplay =
+    document.getElementById("capitalDisplay");
+
+  const durationDisplay =
+    document.getElementById("durationDisplay");
+
+  const rangeDisplay =
+    document.getElementById("rangeDisplay");
+
+
+  function money(value) {
+
+    return new Intl.NumberFormat(
+      "en-US",
+      {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0
+      }
+    ).format(value);
+
+  }
+
+
+  function updateCalculator() {
+
+    const option =
+      planSelect.options[
+        planSelect.selectedIndex
+      ];
+
+    const min =
+      Number(option.dataset.min);
+
+    const max =
+      Number(option.dataset.max);
+
+    const days =
+      planSelect.value;
+
+    let amount =
+      Number(capital.value || min);
+
+
+    if(amount < min) {
+      amount = min;
+    }
+
+
+    if(amount > max) {
+      amount = max;
+    }
+
+
+    const illustratedTotal =
+      amount * 20;
+
+
+    resultAmount.textContent =
+      money(illustratedTotal);
+
+    capitalDisplay.textContent =
+      money(amount);
+
+    durationDisplay.textContent =
+      days + " Days";
+
+    rangeDisplay.textContent =
+      money(min) +
+      " – " +
+      money(max);
+
+  }
+
+
+  planSelect.addEventListener(
+    "change",
+    function() {
+
+      const option =
+        planSelect.options[
+          planSelect.selectedIndex
+        ];
+
+      const min =
+        Number(option.dataset.min);
+
+      capital.min =
+        option.dataset.min;
+
+      capital.max =
+        option.dataset.max;
+
+      capital.value =
+        min;
+
+      updateCalculator();
+
+    }
+  );
+
+
+  capital.addEventListener(
+    "input",
+    updateCalculator
+  );
+
+
+  updateCalculator();
+
+</script>
+
+</body>
+  </html>
