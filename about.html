@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Wfunded</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --bg:#030912;
+      --panel:#07121e;
+      --panel2:#0a1725;
+      --border:#17283a;
+      --text:#f4f7fb;
+      --muted:#8d9aaa;
+      --purple:#7c3cff;
+      --purple-light:#a679ff;
+      --green:#25d98a;
+      --gold:#e7b94d;
+    }
+
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:
+        radial-gradient(circle at 82% 12%,rgba(124,60,255,.10),transparent 28%),
+        var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    button{
+      font:inherit;
+      cursor:pointer;
+    }
+
+    nav{
+      min-height:72px;
+      padding:0 4%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      border-bottom:1px solid var(--border);
+      background:rgba(3,9,18,.92);
+      backdrop-filter:blur(12px);
+      position:sticky;
+      top:0;
+      z-index:50;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:24px;
+      font-weight:800;
+    }
+
+    .logo-mark{
+      color:var(--purple-light);
+      font-size:30px;
+      font-weight:900;
+      transform:skew(-15deg);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:28px;
+      color:#b9c2ce;
+      font-size:14px;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active{
+      color:white;
+    }
+
+    .nav-actions{
+      display:flex;
+      gap:10px;
+    }
+
+    .login,
+    .create{
+      padding:11px 20px;
+      border-radius:8px;
+      color:white;
+    }
+
+    .login{
+      background:transparent;
+      border:1px solid var(--border);
+    }
+
+    .create{
+      border:none;
+      background:linear-gradient(135deg,#6930e8,#8b4dff);
+      font-weight:700;
+    }
+
+    .page{
+      width:min(1200px,92%);
+      margin:38px auto 70px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:30px;
+      align-items:center;
+      padding:48px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      background:
+        radial-gradient(circle at 80% 50%,rgba(124,60,255,.18),transparent 35%),
+        linear-gradient(145deg,#07121e,#050d17);
+    }
+
+    .eyebrow{
+      color:var(--purple-light);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-weight:700;
+      margin-bottom:13px;
+    }
+
+    .hero h1{
+      font-size:clamp(38px,6vw,62px);
+      line-height:1.05;
+      margin-bottom:18px;
+    }
+
+    .hero p{
+      color:var(--muted);
+      line-height:1.8;
+      max-width:680px;
+      font-size:15px;
+    }
+
+    .hero-card{
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:rgba(7,18,30,.76);
+      padding:28px;
+    }
+
+    .hero-card h3{
+      font-size:16px;
+      margin-bottom:15px;
+    }
+
+    .hero-point{
+      display:flex;
+      gap:12px;
+      padding:13px 0;
+      border-bottom:1px solid #112233;
+    }
+
+    .hero-point:last-child{
+      border-bottom:none;
+    }
+
+    .point-icon{
+      width:32px;
+      height:32px;
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--purple-light);
+      background:rgba(124,60,255,.12);
+      flex-shrink:0;
+    }
+
+    .hero-point strong{
+      display:block;
+      font-size:12px;
+      margin-bottom:4px;
+    }
+
+    .hero-point span{
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.5;
+    }
+
+    .section{
+      margin-top:34px;
+    }
+
+    .section-head{
+      margin-bottom:18px;
+    }
+
+    .section-head h2{
+      font-size:27px;
+      margin-bottom:7px;
+    }
+
+    .section-head p{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+      max-width:720px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .card{
+      border:1px solid var(--border);
+      border-radius:13px;
+      background:linear-gradient(145deg,#07121e,#081522);
+      padding:23px;
+    }
+
+    .card-icon{
+      width:42px;
+      height:42px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(124,60,255,.12);
+      color:var(--purple-light);
+      font-size:18px;
+      margin-bottom:16px;
+    }
+
+    .card h3{
+      font-size:16px;
+      margin-bottom:9px;
+    }
+
+    .card p{
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.7;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .panel{
+      border:1px solid var(--border);
+      background:var(--panel);
+      border-radius:13px;
+      padding:25px;
+    }
+
+    .panel h2{
+      font-size:22px;
+      margin-bottom:10px;
+    }
+
+    .panel p{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.8;
+    }
+
+    .values{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .value{
+      border:1px solid var(--border);
+      background:#050f1a;
+      border-radius:10px;
+      padding:16px;
+    }
+
+    .value strong{
+      display:block;
+      font-size:13px;
+      margin-bottom:6px;
+    }
+
+    .value span{
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.5;
+    }
+
+    .process{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+
+    .step{
+      border:1px solid var(--border);
+      background:var(--panel);
+      border-radius:11px;
+      padding:20px;
+    }
+
+    .step-number{
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:rgba(124,60,255,.13);
+      color:var(--purple-light);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      margin-bottom:14px;
+    }
+
+    .step h3{
+      font-size:14px;
+      margin-bottom:7px;
+    }
+
+    .step p{
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.6;
+    }
+
+    .risk{
+      margin-top:34px;
+      padding:24px;
+      border:1px solid #493a1b;
+      border-radius:12px;
+      background:rgba(231,185,77,.05);
+    }
+
+    .risk h3{
+      color:var(--gold);
+      font-size:15px;
+      margin-bottom:9px;
+    }
+
+    .risk p{
+      color:#a1abb8;
+      font-size:12px;
+      line-height:1.7;
+    }
+
+    .cta{
+      margin-top:34px;
+      padding:35px;
+      text-align:center;
+      border:1px solid #3e2c69;
+      border-radius:14px;
+      background:
+        radial-gradient(circle at 50% 0%,rgba(124,60,255,.18),transparent 50%),
+        var(--panel);
+    }
+
+    .cta h2{
+      font-size:27px;
+      margin-bottom:9px;
+    }
+
+    .cta p{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:20px;
+    }
+
+    .cta-buttons{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .primary,
+    .secondary{
+      padding:12px 18px;
+      border-radius:8px;
+      color:white;
+    }
+
+    .primary{
+      border:none;
+      background:linear-gradient(135deg,#6930e8,#8b4dff);
+      font-weight:700;
+    }
+
+    .secondary{
+      border:1px solid var(--border);
+      background:transparent;
+    }
+
+    footer{
+      border-top:1px solid var(--border);
+      padding:32px 4%;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    @media(max-width:900px){
+      .hero{
+        grid-template-columns:1fr;
+      }
+
+      .cards{
+        grid-template-columns:1fr;
+      }
+
+      .split{
+        grid-template-columns:1fr;
+      }
+
+      .process{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      nav{
+        padding:14px 4%;
+        flex-wrap:wrap;
+        gap:15px;
+      }
+
+      .nav-links{
+        order:3;
+        width:100%;
+        overflow-x:auto;
+      }
+    }
+
+    @media(max-width:520px){
+      .page{
+        width:94%;
+      }
+
+      .hero{
+        padding:28px 22px;
+      }
+
+      .process{
+        grid-template-columns:1fr;
+      }
+
+      .values{
+        grid-template-columns:1fr;
+      }
+
+      .nav-actions .login{
+        display:none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+
+  <a href="index.html" class="logo">
+    <span class="logo-mark">W</span>
+    <span>Wfunded</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="markets.html">Markets</a>
+    <a href="invest.html">Invest</a>
+    <a href="platform.html">Trading Platform</a>
+    <a href="about.html" class="active">About Us</a>
+    <a href="support.html">Support</a>
+  </div>
+
+  <div class="nav-actions">
+    <button class="login">Login</button>
+    <button class="create">Create Account</button>
+  </div>
+
+</nav>
+
+
+<main class="page">
+
+  <section class="hero">
+
+    <div>
+
+      <div class="eyebrow">
+        About Wfunded
+      </div>
+
+      <h1>
+        Built for a clearer trading and investing experience.
+      </h1>
+
+      <p>
+        Wfunded is being developed as a digital trading and investment
+        platform designed to bring market information, investment tools,
+        account management and support into one professional experience.
+        The platform is currently in its development and prototype stage,
+        with infrastructure and live financial-service capabilities to be
+        added separately.
+      </p>
+
+    </div>
+
+
+    <div class="hero-card">
+
+      <h3>
+        What Wfunded is designed around
+      </h3>
+
+      <div class="hero-point">
+
+        <div class="point-icon">01</div>
+
+        <div>
+          <strong>Simple Market Access</strong>
+          <span>
+            Clear presentation of crypto, stocks, forex and commodities.
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="hero-point">
+
+        <div class="point-icon">02</div>
+
+        <div>
+          <strong>Transparent Information</strong>
+          <span>
+            Important pricing, product and risk information presented clearly.
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="hero-point">
+
+        <div class="point-icon">03</div>
+
+        <div>
+          <strong>Account Control</strong>
+          <span>
+            A single interface for portfolio, activity, investments and support.
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <h2>Our Mission</h2>
+
+      <p>
+        Wfunded aims to create a mature digital platform where users can
+        understand markets, review opportunities and manage their account
+        activity through a clean and structured interface.
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+      <div class="card">
+
+        <div class="card-icon">M</div>
+
+        <h3>Market Clarity</h3>
+
+        <p>
+          Present market prices, trends and asset information without
+          overwhelming users with unnecessary visual noise.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">S</div>
+
+        <h3>Security First</h3>
+
+        <p>
+          Account authentication, personal data, transactions and financial
+          records should be handled through protected infrastructure rather
+          than public front-end hosting.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">T</div>
+
+        <h3>Transparency</h3>
+
+        <p>
+          Product terms, fees, risk information and performance information
+          should be presented accurately and without misleading guarantees.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section split">
+
+    <div class="panel">
+
+      <h2>What We're Building</h2>
+
+      <p>
+        The Wfunded platform is being structured to combine market discovery,
+        an account dashboard, investment-plan interfaces, transaction history,
+        profile management and customer support.
+      </p>
+
+      <div class="values">
+
+        <div class="value">
+          <strong>Markets</strong>
+          <span>Crypto, stocks, forex and commodities.</span>
+        </div>
+
+        <div class="value">
+          <strong>Dashboard</strong>
+          <span>Portfolio, account balances and activity.</span>
+        </div>
+
+        <div class="value">
+          <strong>Investments</strong>
+          <span>Plan information and account-based tracking.</span>
+        </div>
+
+        <div class="value">
+          <strong>Support</strong>
+          <span>Structured customer and administrative communication.</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="panel">
+
+      <h2>Our Approach</h2>
+
+      <p>
+        The public website and user interface are only one layer of a financial
+        platform. Before live accounts, deposits, withdrawals, investments or
+        trade execution are enabled, Wfunded will need appropriate backend
+        infrastructure, security controls, payment or custody arrangements,
+        identity verification processes and compliance with applicable laws
+        and regulatory requirements.
+      </p>
+
+      <div class="values">
+
+        <div class="value">
+          <strong>Privacy</strong>
+          <span>Protect personal and account information.</span>
+        </div>
+
+        <div class="value">
+          <strong>Reliability</strong>
+          <span>Use trusted systems for financial operations.</span>
+        </div>
+
+        <div class="value">
+          <strong>Compliance</strong>
+          <span>Operate according to applicable legal requirements.</span>
+        </div>
+
+        <div class="value">
+          <strong>Support</strong>
+          <span>Give users clear ways to obtain assistance.</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <h2>How Wfunded Works</h2>
+
+      <p>
+        The finished platform is intended to provide a straightforward journey
+        from account creation through market access and account management.
+      </p>
+
+    </div>
+
+
+    <div class="process">
+
+      <div class="step">
+
+        <div class="step-number">1</div>
+
+        <h3>Create an Account</h3>
+
+        <p>
+          Users register and securely access their personal Wfunded account.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">2</div>
+
+        <h3>Review Markets</h3>
+
+        <p>
+          Explore available assets, current prices and market direction.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">3</div>
+
+        <h3>Choose Services</h3>
+
+        <p>
+          Access trading or investment features available for the account.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">4</div>
+
+        <h3>Manage Activity</h3>
+
+        <p>
+          Review portfolio information, transactions, settings and support.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <div class="risk">
+
+    <h3>Risk & Platform Notice</h3>
+
+    <p>
+      Trading and investing can involve significant risk, including loss of
+      capital. Wfunded's current website is a prototype interface and should
+      not be interpreted as evidence of regulatory authorization, custody of
+      customer assets, live trade execution or guaranteed investment returns.
+      Any live financial products or services must be supported by appropriate
+      legal, regulatory, security and operational infrastructure.
+    </p>
+
+  </div>
+
+
+  <section class="cta">
+
+    <h2>Explore Wfunded</h2>
+
+    <p>
+      Review the platform interface, markets and investment information.
+    </p>
+
+    <div class="cta-buttons">
+
+      <a href="markets.html">
+        <button class="primary">Explore Markets</button>
+      </a>
+
+      <a href="platform.html">
+        <button class="secondary">View Platform</button>
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+  © 2026 Wfunded. All rights reserved.
+</footer>
+
+</body>
+</html>
