@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Payment Verification | Wfunded</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #030912;
+      --panel: #07121e;
+      --panel2: #0a1725;
+      --field: #050f19;
+      --border: #17283a;
+      --text: #f4f7fb;
+      --muted: #8d9aaa;
+      --purple: #7c3cff;
+      --purpleLight: #a679ff;
+      --green: #25d98a;
+      --yellow: #f3c969;
+      --red: #ff5b70;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 70% 10%,
+          rgba(124, 60, 255, 0.15),
+          transparent 30%
+        ),
+        var(--bg);
+
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .header {
+      min-height: 72px;
+      padding: 0 5%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      border-bottom: 1px solid var(--border);
+
+      background: rgba(3, 9, 18, 0.96);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .logo-w {
+      color: var(--purpleLight);
+      font-size: 31px;
+      font-style: italic;
+      font-weight: 900;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .nav a:hover {
+      color: white;
+    }
+
+    .page {
+      width: min(1050px, 94%);
+      margin: 48px auto 70px;
+    }
+
+    .hero {
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      margin-bottom: 10px;
+
+      color: var(--purpleLight);
+
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin-bottom: 12px;
+
+      font-size: clamp(36px, 6vw, 55px);
+      line-height: 1.05;
+    }
+
+    .hero p {
+      max-width: 680px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .warning {
+      margin-bottom: 24px;
+      padding: 15px 17px;
+
+      border: 1px solid rgba(243, 201, 105, 0.25);
+      border-radius: 11px;
+
+      background: rgba(243, 201, 105, 0.06);
+
+      color: #d8c78e;
+
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 0.72fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      padding: 27px;
+
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #07131f,
+          #050d17
+        );
+
+      box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .card h2 {
+      margin-bottom: 7px;
+
+      font-size: 22px;
+    }
+
+    .sub {
+      margin-bottom: 23px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+
+      color: #adb7c3;
+
+      font-size: 10px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+
+      padding: 13px 14px;
+
+      border: 1px solid var(--border);
+      border-radius: 9px;
+
+      outline: none;
+
+      background: var(--field);
+      color: white;
+    }
+
+    input,
+    select {
+      min-height: 48px;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #566578;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #7446da;
+
+      box-shadow:
+        0 0 0 3px rgba(124, 60, 255, 0.1);
+    }
+
+    select option {
+      background: #07121e;
+      color: white;
+    }
+
+    .network-box {
+      display: none;
+
+      margin-bottom: 18px;
+      padding: 17px;
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      background: #050f19;
+    }
+
+    .network-box.show {
+      display: block;
+    }
+
+    .network-top {
+      margin-bottom: 14px;
+
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .coin-title strong {
+      display: block;
+      margin-bottom: 4px;
+
+      font-size: 13px;
+    }
+
+    .coin-title span {
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    .badge {
+      padding: 7px 10px;
+
+      border-radius: 20px;
+
+      background: rgba(124, 60, 255, 0.12);
+      color: var(--purpleLight);
+
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .address-label {
+      margin-bottom: 7px;
+
+      color: var(--muted);
+
+      font-size: 9px;
+    }
+
+    .address-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+    }
+
+    .address-row input {
+      font-size: 10px;
+    }
+
+    .copy-btn {
+      min-width: 70px;
+
+      padding: 0 13px;
+
+      border: 1px solid #6335ca;
+      border-radius: 9px;
+
+      background: rgba(124, 60, 255, 0.12);
+      color: var(--purpleLight);
+
+      font-size: 10px;
+      font-weight: 700;
+
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      background: rgba(124, 60, 255, 0.2);
+    }
+
+    .amount-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      min-height: 51px;
+
+      border: none;
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #6930e8,
+          #914cff
+        );
+
+      color: white;
+
+      font-weight: 800;
+
+      cursor: pointer;
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .message {
+      display: none;
+
+      margin-bottom: 17px;
+      padding: 14px;
+
+      border-radius: 9px;
+
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .message.success {
+      display: block;
+
+      border:
+        1px solid rgba(37, 217, 138, 0.3);
+
+      background:
+        rgba(37, 217, 138, 0.07);
+
+      color: #8be9bb;
+    }
+
+    .message.error {
+      display: block;
+
+      border:
+        1px solid rgba(255, 91, 112, 0.3);
+
+      background:
+        rgba(255, 91, 112, 0.07);
+
+      color: #ffa4b0;
+    }
+
+    .side-section {
+      margin-bottom: 23px;
+    }
+
+    .side-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .side-title {
+      margin-bottom: 12px;
+
+      color: var(--muted);
+
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .status-box {
+      padding: 16px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: #050f19;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 7px 10px;
+
+      border-radius: 20px;
+
+      background: rgba(243, 201, 105, 0.08);
+      color: var(--yellow);
+
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: var(--yellow);
+    }
+
+    .status-box p {
+      margin-top: 11px;
+
+      color: var(--muted);
+
+      font-size: 9px;
+      line-height: 1.7;
+    }
+
+    .steps {
+      display: grid;
+      gap: 10px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+
+      color: var(--muted);
+
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .step-number {
+      width: 25px;
+      height: 25px;
+
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 7px;
+
+      background:
+        rgba(124, 60, 255, 0.12);
+
+      color: var(--purpleLight);
+
+      font-weight: 700;
+    }
+
+    .history {
+      display: grid;
+      gap: 10px;
+    }
+
+    .history-item {
+      padding: 13px;
+
+      border: 1px solid var(--border);
+      border-radius: 9px;
+
+      background: #050f19;
+    }
+
+    .history-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+
+      margin-bottom: 5px;
+    }
+
+    .history-top strong {
+      font-size: 10px;
+    }
+
+    .pending {
+      color: var(--yellow);
+      font-size: 8px;
+    }
+
+    .history-item span {
+      color: var(--muted);
+      font-size: 8px;
+    }
+
+    .signin-warning {
+      padding: 17px;
+
+      border: 1px solid rgba(255, 91, 112, 0.25);
+      border-radius: 10px;
+
+      background: rgba(255, 91, 112, 0.05);
+
+      color: #ffabb6;
+
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .signin-warning a {
+      color: var(--purpleLight);
+      font-weight: 700;
+    }
+
+    footer {
+      padding: 30px;
+
+      text-align: center;
+
+      color: #667386;
+
+      font-size: 9px;
+    }
+
+    @media (max-width: 790px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .nav a:not(:last-child) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .header {
+        padding: 0 4%;
+      }
+
+      .page {
+        width: 94%;
+        margin-top: 30px;
+      }
+
+      .card {
+        padding: 22px 18px;
+      }
+
+      .amount-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .address-row {
+        grid-template-columns: 1fr;
+      }
+
+      .copy-btn {
+        min-height: 42px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <header class="header">
+
+    <a
+      href="index.html"
+      class="logo"
+    >
+      <span class="logo-w">W</span>
+      <span>Wfunded</span>
+    </a>
+
+    <nav class="nav">
+      <a href="platform.html">
+        Dashboard
+      </a>
+
+      <a href="profile.html">
+        Profile
+      </a>
+
+      <a href="support.html">
+        Support
+      </a>
+    </nav>
+
+  </header>
+
+
+  <main class="page">
+
+    <section class="hero">
+
+      <div class="eyebrow">
+        Payment Verification
+      </div>
+
+      <h1>
+        Submit a crypto payment.
+      </h1>
+
+      <p>
+        Select the cryptocurrency and network,
+        review the destination information,
+        then submit the transaction hash for
+        verification.
+      </p>
+
+    </section>
+
+
+    <div class="warning">
+      <strong>Test configuration:</strong>
+      the destination addresses on this page are
+      placeholders. Do not send cryptocurrency to
+      them. A submitted transaction remains pending
+      until it is independently verified on the
+      appropriate blockchain.
+    </div>
+
+
+    <div class="layout">
+
+      <section class="card">
+
+        <h2>
+          Payment Details
+        </h2>
+
+        <p class="sub">
+          Choose the exact cryptocurrency and network
+          used for your payment.
+        </p>
+
+
+        <div
+          id="loginNotice"
+          class="signin-warning"
+          style="display:none;"
+        >
+          You must be signed in before submitting
+          a payment for verification.
+          <a href="login.html">
+            Sign in
+          </a>
+        </div>
+
+
+        <form id="paymentForm">
+
+          <div class="field">
+
+            <label for="currency">
+              Cryptocurrency
+            </label>
+
+            <select
+              id="currency"
+              required
+            >
+
+              <option value="">
+                Select cryptocurrency
+              </option>
+
+              <option value="ETH">
+                Ethereum (ETH)
+              </option>
+
+              <option value="USDT_TRC20">
+                USDT — TRC20
+              </option>
+
+              <option value="USDT_ERC20">
+                USDT — ERC20
+              </option>
+
+              <option value="USDC_SOL">
+                USDC — Solana
+              </option>
+
+              <option value="BTC">
+                Bitcoin (BTC)
+              </option>
+
+              <option value="BNB">
+                BNB — BNB Smart Chain
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div
+            id="networkBox"
+            class="network-box"
+          >
+
+            <div class="network-top">
+
+              <div class="coin-title">
+
+                <strong id="coinName">
+                  Cryptocurrency
+                </strong>
+
+                <span id="networkName">
+                  Network
+                </span>
+
+              </div>
+
+              <div
+                id="symbolBadge"
+                class="badge"
+              >
+                CRYPTO
+              </div>
+
+            </div>
+
+
+            <div class="address-label">
+              Destination address
+            </div>
+
+
+            <div class="address-row">
+
+              <input
+                id="walletAddress"
+                type="text"
+                readonly
+              >
+
+              <button
+                id="copyButton"
+                type="button"
+                class="copy-btn"
+              >
+                Copy
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="amount-row">
+
+            <div class="field">
+
+              <label for="amount">
+                Amount
+              </label>
+
+              <input
+                id="amount"
+                type="number"
+                min="0"
+                step="any"
+                placeholder="0.00"
+                required
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="reference">
+                Payment Reference
+              </label>
+
+              <input
+                id="reference"
+                type="text"
+                placeholder="Optional"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="txHash">
+              Transaction Hash / TXID
+            </label>
+
+            <input
+              id="txHash"
+              type="text"
+              placeholder="Paste your blockchain transaction hash"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="note">
+              Note
+            </label>
+
+            <textarea
+              id="note"
+              placeholder="Optional information about this payment"
+            ></textarea>
+
+          </div>
+
+
+          <div
+            id="message"
+            class="message"
+            aria-live="polite"
+          ></div>
+
+
+          <button
+            id="submitButton"
+            class="submit-btn"
+            type="submit"
+          >
+            I've Made the Payment
+          </button>
+
+        </form>
+
+      </section>
+
+
+      <aside class="card">
+
+        <div class="side-section">
+
+          <div class="side-title">
+            Verification Status
+          </div>
+
+          <div class="status-box">
+
+            <div class="status">
+              <span class="status-dot"></span>
+              Pending Verification
+            </div>
+
+            <p>
+              Pressing the payment button does not
+              confirm a payment. The transaction
+              must first be checked against the
+              relevant blockchain.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="side-section">
+
+          <div class="side-title">
+            How It Works
+          </div>
+
+          <div class="steps">
+
+            <div class="step">
+
+              <div class="step-number">
+                1
+              </div>
+
+              <div>
+                Select the cryptocurrency and
+                correct blockchain network.
+              </div>
+
+            </div>
+
+
+            <div class="step">
+
+              <div class="step-number">
+                2
+              </div>
+
+              <div>
+                Copy the destination address and
+                independently confirm the network
+                before using it.
+              </div>
+
+            </div>
+
+
+            <div class="step">
+
+              <div class="step-number">
+                3
+              </div>
+
+              <div>
+                Enter the exact transaction hash
+                generated by the blockchain
+                transaction.
+              </div>
+
+            </div>
+
+
+            <div class="step">
+
+              <div class="step-number">
+                4
+              </div>
+
+              <div>
+                The submission remains pending
+                until the transaction is
+                independently verified.
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="side-section">
+
+          <div class="side-title">
+            Your Recent Submissions
+          </div>
+
+          <div
+            id="history"
+            class="history"
+          >
+
+            <div class="history-item">
+              <span>
+                No payment submissions loaded.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+
+  <footer>
+    © 2026 Wfunded. All rights reserved.
+  </footer>
+
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  ></script>
+
+
+  <script>
+
+    const SUPABASE_URL =
+      "https://ymlbiotsxwizhcywozwx.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_scMlN-89o0fiivYqvvMI1Q_Y3hazkIR";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    /*
+      TEST DESTINATION ADDRESSES ONLY.
+
+      Replace these only when an approved
+      payment / custody / verification
+      system is ready.
+    */
+
+    const cryptoOptions = {
+
+      ETH: {
+        name: "Ethereum",
+        symbol: "ETH",
+        network: "Ethereum Network",
+        address: "TEST_ETH_ADDRESS"
+      },
+
+      USDT_TRC20: {
+        name: "Tether USD",
+        symbol: "USDT",
+        network: "TRON TRC20",
+        address: "TEST_USDT_TRC20_ADDRESS"
+      },
+
+      USDT_ERC20: {
+        name: "Tether USD",
+        symbol: "USDT",
+        network: "Ethereum ERC20",
+        address: "TEST_USDT_ERC20_ADDRESS"
+      },
+
+      USDC_SOL: {
+        name: "USD Coin",
+        symbol: "USDC",
+        network: "Solana",
+        address: "TEST_USDC_SOL_ADDRESS"
+      },
+
+      BTC: {
+        name: "Bitcoin",
+        symbol: "BTC",
+        network: "Bitcoin Network",
+        address: "TEST_BTC_ADDRESS"
+      },
+
+      BNB: {
+        name: "BNB",
+        symbol: "BNB",
+        network: "BNB Smart Chain",
+        address: "TEST_BNB_ADDRESS"
+      }
+
+    };
+
+
+    const form =
+      document.getElementById("paymentForm");
+
+    const currency =
+      document.getElementById("currency");
+
+    const networkBox =
+      document.getElementById("networkBox");
+
+    const coinName =
+      document.getElementById("coinName");
+
+    const networkName =
+      document.getElementById("networkName");
+
+    const symbolBadge =
+      document.getElementById("symbolBadge");
+
+    const walletAddress =
+      document.getElementById("walletAddress");
+
+    const copyButton =
+      document.getElementById("copyButton");
+
+    const message =
+      document.getElementById("message");
+
+    const submitButton =
+      document.getElementById("submitButton");
+
+    const loginNotice =
+      document.getElementById("loginNotice");
+
+    const history =
+      document.getElementById("history");
+
+
+    let currentUser = null;
+
+
+    function showMessage(
+      text,
+      type
+    ) {
+
+      message.textContent = text;
+
+      message.className =
+        "message " + type;
+
+    }
+
+
+    currency.addEventListener(
+      "change",
+      function() {
+
+        const selected =
+          cryptoOptions[currency.value];
+
+
+        if (!selected) {
+
+          networkBox.classList.remove(
+            "show"
+          );
+
+          walletAddress.value = "";
+
+          return;
+
+        }
+
+
+        coinName.textContent =
+          selected.name;
+
+
+        networkName.textContent =
+          selected.network;
+
+
+        symbolBadge.textContent =
+          selected.symbol;
+
+
+        walletAddress.value =
+          selected.address;
+
+
+        networkBox.classList.add(
+          "show"
+        );
+
+      }
+    );
+
+
+    copyButton.addEventListener(
+      "click",
+      async function() {
+
+        if (!walletAddress.value) {
+          return;
+        }
+
+
+        try {
+
+          await navigator.clipboard.writeText(
+            walletAddress.value
+          );
+
+
+          copyButton.textContent =
+            "Copied ✓";
+
+
+          setTimeout(
+            function() {
+
+              copyButton.textContent =
+                "Copy";
+
+            },
+            1500
+          );
+
+        } catch (error) {
+
+          walletAddress.select();
+
+          document.execCommand(
+            "copy"
+          );
+
+
+          copyButton.textContent =
+            "Copied ✓";
+
+        }
+
+      }
+    );
+
+
+    async function checkUser() {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient.auth.getUser();
+
+
+      if (
+        error ||
+        !data.user
+      ) {
+
+        currentUser = null;
+
+        loginNotice.style.display =
+          "block";
+
+        submitButton.disabled =
+          true;
+
+        return;
+
+      }
+
+
+      currentUser =
+        data.user;
+
+
+      loginNotice.style.display =
+        "none";
+
+
+      submitButton.disabled =
+        false;
+
+
+      loadHistory();
+
+    }
+
+
+    async function loadHistory() {
+
+      if (!currentUser) {
+        return;
+      }
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("payment_submissions")
+          .select(
+            "id,currency,network,amount,status,created_at"
+          )
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          )
+          .limit(5);
+
+
+      if (error) {
+
+        console.log(
+          "History error:",
+          error.message
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !data ||
+        data.length === 0
+      ) {
+
+        history.innerHTML =
+          '<div class="history-item">' +
+          '<span>No previous submissions.</span>' +
+          '</div>';
+
+        return;
+
+      }
+
+
+      history.innerHTML =
+        data.map(
+          function(item) {
+
+            const date =
+              new Date(
+                item.created_at
+              ).toLocaleDateString();
+
+
+            return (
+              '<div class="history-item">' +
+
+                '<div class="history-top">' +
+
+                  '<strong>' +
+                    item.currency +
+                    ' · ' +
+                    item.amount +
+                  '</strong>' +
+
+                  '<span class="pending">' +
+                    item.status +
+                  '</span>' +
+
+                '</div>' +
+
+                '<span>' +
+                  item.network +
+                  ' · ' +
+                  date +
+                '</span>' +
+
+              '</div>'
+            );
+
+          }
+        ).join("");
+
+    }
+
+
+    form.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+
+        message.className =
+          "message";
+
+        message.textContent =
+          "";
+
+
+        if (!currentUser) {
+
+          showMessage(
+            "Please sign in before submitting a payment.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        const selected =
+          cryptoOptions[
+            currency.value
+          ];
+
+
+        if (!selected) {
+
+          showMessage(
+            "Please select a cryptocurrency.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        const amount =
+          Number(
+            document
+              .getElementById("amount")
+              .value
+          );
+
+
+        const txHash =
+          document
+            .getElementById("txHash")
+            .value
+            .trim();
+
+
+        const reference =
+          document
+            .getElementById("reference")
+            .value
+            .trim();
+
+
+        const note =
+          document
+            .getElementById("note")
+            .value
+            .trim();
+
+
+        if (
+          !amount ||
+          amount <= 0
+        ) {
+
+          showMessage(
+            "Enter a valid payment amount.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if (
+          txHash.length < 8
+        ) {
+
+          showMessage(
+            "Enter a valid transaction hash or TXID.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        submitButton.disabled =
+          true;
+
+
+        submitButton.textContent =
+          "Submitting...";
+
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("payment_submissions")
+            .insert({
+
+              user_id:
+                currentUser.id,
+
+              user_email:
+                currentUser.email,
+
+              currency:
+                selected.symbol,
+
+              network:
+                selected.network,
+
+              destination_address:
+                selected.address,
+
+              amount:
+                amount,
+
+              tx_hash:
+                txHash,
+
+              reference:
+                reference,
+
+              note:
+                note,
+
+              status:
+                "pending"
+
+            });
+
+
+        if (error) {
+
+          console.error(
+            error
+          );
+
+
+          showMessage(
+            "The payment submission could not be saved. Make sure the Supabase payment table has been created.",
+            "error"
+          );
+
+
+          submitButton.disabled =
+            false;
+
+
+          submitButton.textContent =
+            "I've Made the Payment";
+
+
+          return;
+
+        }
+
+
+        showMessage(
+          "Payment submitted successfully. Its status is Pending Verification until the blockchain transaction is independently confirmed.",
+          "success"
+        );
+
+
+        form.reset();
+
+
+        networkBox.classList.remove(
+          "show"
+        );
+
+
+        submitButton.disabled =
+          false;
+
+
+        submitButton.textContent =
+          "I've Made the Payment";
+
+
+        loadHistory();
+
+      }
+    );
+
+
+    checkUser();
+
+  </script>
+
+</body>
+</html>
