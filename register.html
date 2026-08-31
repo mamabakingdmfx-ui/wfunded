@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>Create Account | Wfunded</title>
 
   <style>
+
     *{
       margin:0;
       padding:0;
@@ -15,6 +23,7 @@
     :root{
       --bg:#030912;
       --panel:#07121e;
+      --panel2:#091725;
       --border:#17283a;
       --text:#f4f7fb;
       --muted:#8d9aaa;
@@ -26,11 +35,18 @@
 
     body{
       font-family:Arial,Helvetica,sans-serif;
-      background:
-        radial-gradient(circle at 78% 18%,rgba(124,60,255,.14),transparent 30%),
-        var(--bg);
-      color:var(--text);
+
       min-height:100vh;
+
+      background:
+        radial-gradient(
+          circle at 75% 12%,
+          rgba(124,60,255,.12),
+          transparent 30%
+        ),
+        var(--bg);
+
+      color:var(--text);
     }
 
     a{
@@ -44,167 +60,1342 @@
       font:inherit;
     }
 
-    nav{
-      min-height:72px;
-      padding:0 4%;
+    .topbar{
+      min-height:70px;
+
       display:flex;
       align-items:center;
       justify-content:space-between;
+
+      padding:0 5%;
+
       border-bottom:1px solid var(--border);
-      background:rgba(3,9,18,.9);
+
+      background:rgba(3,9,18,.92);
     }
 
     .logo{
       display:flex;
       align-items:center;
-      gap:10px;
-      font-size:24px;
+      gap:9px;
+
+      font-size:22px;
       font-weight:800;
     }
 
     .logo-mark{
       color:var(--purple-light);
-      font-size:30px;
+
+      font-size:29px;
       font-weight:900;
+
       transform:skew(-15deg);
     }
 
     .back{
       color:var(--muted);
-      font-size:13px;
-    }
-
-    .back:hover{
-      color:white;
+      font-size:11px;
     }
 
     .page{
-      min-height:calc(100vh - 72px);
+      width:min(1080px,94%);
+
+      margin:45px auto 70px;
+
       display:grid;
-      grid-template-columns:.9fr 1.1fr;
+
+      grid-template-columns:
+        .8fr 1.2fr;
+
+      gap:45px;
+
+      align-items:start;
     }
 
     .intro{
-      padding:7%;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      border-right:1px solid var(--border);
-      background:
-        radial-gradient(circle at 30% 30%,rgba(124,60,255,.11),transparent 34%);
+      padding-top:35px;
     }
 
     .eyebrow{
       color:var(--purple-light);
-      font-size:12px;
-      letter-spacing:2px;
+
+      font-size:10px;
+
       text-transform:uppercase;
-      font-weight:700;
-      margin-bottom:14px;
+
+      letter-spacing:2px;
+
+      margin-bottom:13px;
     }
 
     .intro h1{
-      font-size:clamp(40px,6vw,68px);
-      line-height:1.03;
+      font-size:
+        clamp(
+          38px,
+          6vw,
+          58px
+        );
+
+      line-height:1;
+
       margin-bottom:18px;
-      max-width:620px;
     }
 
-    .intro p{
+    .intro > p{
       color:var(--muted);
+
+      font-size:12px;
+
       line-height:1.8;
-      max-width:560px;
-      font-size:14px;
+
+      max-width:430px;
     }
 
     .steps{
-      margin-top:28px;
       display:grid;
-      gap:12px;
-      max-width:520px;
+
+      gap:11px;
+
+      margin-top:30px;
     }
 
     .step{
       display:flex;
-      gap:12px;
-      align-items:flex-start;
+
+      align-items:center;
+
+      gap:13px;
+
       border:1px solid var(--border);
-      background:rgba(7,18,30,.7);
+
+      background:rgba(7,18,30,.72);
+
       border-radius:10px;
+
       padding:14px;
     }
 
     .step-number{
       width:31px;
       height:31px;
-      flex-shrink:0;
-      border-radius:50%;
+
       display:flex;
       align-items:center;
       justify-content:center;
+
+      flex-shrink:0;
+
+      border-radius:8px;
+
       background:rgba(124,60,255,.12);
+
       color:var(--purple-light);
-      font-size:11px;
-      font-weight:800;
+
+      font-size:10px;
+      font-weight:700;
     }
 
     .step strong{
       display:block;
-      font-size:12px;
-      margin-bottom:4px;
+
+      font-size:11px;
+
+      margin-bottom:3px;
     }
 
     .step span{
       color:var(--muted);
-      font-size:11px;
-      line-height:1.5;
+
+      font-size:9px;
     }
 
-    .register-side{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:35px;
-    }
-
-    .register-card{
-      width:min(590px,100%);
+    .card{
       border:1px solid var(--border);
-      background:rgba(7,18,30,.94);
-      border-radius:15px;
-      padding:30px;
-      box-shadow:0 20px 70px rgba(0,0,0,.25);
+
+      border-radius:16px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #07131f,
+          #050d17
+        );
+
+      padding:34px;
+
+      box-shadow:
+        0 30px 90px rgba(0,0,0,.3);
     }
 
-    .register-card h2{
-      font-size:27px;
-      margin-bottom:7px;
+    .card h2{
+      font-size:25px;
+
+      margin-bottom:6px;
     }
 
     .subtitle{
       color:var(--muted);
-      font-size:12px;
-      line-height:1.6;
-      margin-bottom:24px;
+
+      font-size:10px;
+
+      margin-bottom:25px;
     }
 
-    .form-grid{
+    .grid{
       display:grid;
-      grid-template-columns:1fr 1fr;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
       gap:14px;
     }
 
     .field{
+      margin-bottom:15px;
+    }
+
+    label{
+      display:block;
+
+      color:#a7b1bd;
+
+      font-size:10px;
+
+      margin-bottom:8px;
+    }
+
+    input,
+    select{
+      width:100%;
+
+      border:1px solid var(--border);
+
+      background:#04101b;
+
+      color:white;
+
+      border-radius:9px;
+
+      padding:13px 14px;
+
+      outline:none;
+    }
+
+    input:focus,
+    select:focus{
+      border-color:#6944ae;
+
+      box-shadow:
+        0 0 0 3px rgba(124,60,255,.08);
+    }
+
+    input::placeholder{
+      color:#576577;
+    }
+
+    .password-wrap{
+      position:relative;
+    }
+
+    .password-wrap input{
+      padding-right:65px;
+    }
+
+    .show-password{
+      position:absolute;
+
+      right:12px;
+      top:50%;
+
+      transform:translateY(-50%);
+
+      border:none;
+
+      background:none;
+
+      color:var(--purple-light);
+
+      cursor:pointer;
+
+      font-size:10px;
+    }
+
+    .terms{
       display:flex;
-      flex-direction:column;
-      gap:7px;
+
+      gap:10px;
+
+      align-items:flex-start;
+
+      margin:7px 0 19px;
     }
 
-    .field.full{
-      grid-column:1 / -1;
+    .terms input{
+      width:17px;
+      height:17px;
+
+      flex-shrink:0;
+
+      margin-top:2px;
     }
 
-    .field label{
+    .terms p{
+      color:var(--muted);
+
+      font-size:9px;
+
+      line-height:1.6;
+    }
+
+    .terms a{
+      color:var(--purple-light);
+    }
+
+    .submit{
+      width:100%;
+
+      border:none;
+
+      border-radius:9px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #6930e8,
+          #914cff
+        );
+
+      color:white;
+
+      padding:14px;
+
+      font-weight:700;
+
+      cursor:pointer;
+
+      transition:.2s;
+    }
+
+    .submit:hover{
+      transform:translateY(-1px);
+    }
+
+    .submit:disabled{
+      opacity:.55;
+
+      cursor:not-allowed;
+
+      transform:none;
+    }
+
+    .message{
+      display:none;
+
+      margin:15px 0;
+
+      border-radius:9px;
+
+      padding:13px;
+
+      font-size:10px;
+
+      line-height:1.6;
+    }
+
+    .message.success{
+      display:block;
+
+      border:1px solid rgba(37,217,138,.3);
+
+      background:rgba(37,217,138,.07);
+
+      color:#85efbe;
+    }
+
+    .message.error{
+      display:block;
+
+      border:1px solid rgba(255,79,101,.3);
+
+      background:rgba(255,79,101,.06);
+
+      color:#ff9aa7;
+    }
+
+    .secure-note{
+      margin-top:18px;
+
+      padding:13px;
+
+      border:1px solid var(--border);
+
+      border-radius:9px;
+
+      background:#050f19;
+
+      color:#788798;
+
+      font-size:9px;
+
+      line-height:1.6;
+    }
+
+    .secure-note strong{
+      color:#aab5c2;
+    }
+
+    .separator{
+      display:flex;
+
+      align-items:center;
+
+      gap:12px;
+
+      margin:22px 0;
+
+      color:#5f6e80;
+
+      font-size:9px;
+    }
+
+    .separator::before,
+    .separator::after{
+      content:"";
+
+      height:1px;
+
+      background:var(--border);
+
+      flex:1;
+    }
+
+    .signin{
+      text-align:center;
+
+      color:var(--muted);
+
+      font-size:10px;
+    }
+
+    .signin a{
+      color:var(--purple-light);
+
+      font-weight:700;
+    }
+
+    footer{
+      text-align:center;
+
+      padding:30px 5%;
+
+      color:#647286;
+
+      font-size:9px;
+    }
+
+    @media(max-width:800px){
+
+      .page{
+        grid-template-columns:1fr;
+
+        margin-top:20px;
+
+        gap:25px;
+      }
+
+      .intro{
+        padding-top:10px;
+      }
+
+      .steps{
+        display:none;
+      }
+
+    }
+
+    @media(max-width:550px){
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+
+      .card{
+        padding:24px 20px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+  <a
+    href="index.html"
+    class="logo"
+  >
+
+    <span class="logo-mark">
+      W
+    </span>
+
+    <span>
+      Wfunded
+    </span>
+
+  </a>
+
+
+  <a
+    href="index.html"
+    class="back"
+  >
+    ← Back to website
+  </a>
+
+</header>
+
+
+
+<main class="page">
+
+
+  <section class="intro">
+
+    <div class="eyebrow">
+      Wfunded Account
+    </div>
+
+    <h1>
+      Create your account.
+    </h1>
+
+    <p>
+      Register securely to access your Wfunded
+      dashboard, profile and account services.
+    </p>
+
+
+    <div class="steps">
+
+      <div class="step">
+
+        <div class="step-number">
+          01
+        </div>
+
+        <div>
+          <strong>Create Your Profile</strong>
+          <span>
+            Enter your account information.
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          02
+        </div>
+
+        <div>
+          <strong>Verify Your Email</strong>
+          <span>
+            Confirm ownership of your email address.
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          03
+        </div>
+
+        <div>
+          <strong>Secure Your Account</strong>
+          <span>
+            Your authentication is handled securely.
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          04
+        </div>
+
+        <div>
+          <strong>Access Wfunded</strong>
+          <span>
+            Sign in to your account dashboard.
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <section class="card">
+
+    <h2>
+      Create Account
+    </h2>
+
+    <p class="subtitle">
+      Enter your details to create your Wfunded login.
+    </p>
+
+
+    <form id="registerForm">
+
+
+      <div class="grid">
+
+        <div class="field">
+
+          <label for="firstName">
+            First Name
+          </label>
+
+          <input
+            id="firstName"
+            type="text"
+            autocomplete="given-name"
+            placeholder="First name"
+            required
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="lastName">
+            Last Name
+          </label>
+
+          <input
+            id="lastName"
+            type="text"
+            autocomplete="family-name"
+            placeholder="Last name"
+            required
+          >
+
+        </div>
+
+      </div>
+
+
+
+      <div class="field">
+
+        <label for="email">
+          Email Address
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          autocomplete="email"
+          placeholder="you@example.com"
+          required
+        >
+
+      </div>
+
+
+
+      <div class="field">
+
+        <label for="phone">
+          Phone Number
+        </label>
+
+        <input
+          id="phone"
+          type="tel"
+          autocomplete="tel"
+          placeholder="+1 000 000 0000"
+        >
+
+      </div>
+
+
+
+      <div class="field">
+
+        <label for="country">
+          Country
+        </label>
+
+        <select
+          id="country"
+          required
+        >
+
+          <option value="">
+            Select country
+          </option>
+
+          <option value="United States">
+            United States
+          </option>
+
+          <option value="United Kingdom">
+            United Kingdom
+          </option>
+
+          <option value="Canada">
+            Canada
+          </option>
+
+          <option value="Australia">
+            Australia
+          </option>
+
+          <option value="Germany">
+            Germany
+          </option>
+
+          <option value="France">
+            France
+          </option>
+
+          <option value="South Africa">
+            South Africa
+          </option>
+
+          <option value="Nigeria">
+            Nigeria
+          </option>
+
+          <option value="Ghana">
+            Ghana
+          </option>
+
+          <option value="Kenya">
+            Kenya
+          </option>
+
+          <option value="Netherlands">
+            Netherlands
+          </option>
+
+          <option value="Other">
+            Other
+          </option>
+
+        </select>
+
+      </div>
+
+
+
+      <div class="field">
+
+        <label for="password">
+          Password
+        </label>
+
+
+        <div class="password-wrap">
+
+          <input
+            id="password"
+            type="password"
+            autocomplete="new-password"
+            minlength="8"
+            placeholder="Minimum 8 characters"
+            required
+          >
+
+          <button
+            type="button"
+            class="show-password"
+            data-target="password"
+          >
+            Show
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="field">
+
+        <label for="confirmPassword">
+          Confirm Password
+        </label>
+
+
+        <div class="password-wrap">
+
+          <input
+            id="confirmPassword"
+            type="password"
+            autocomplete="new-password"
+            minlength="8"
+            placeholder="Repeat password"
+            required
+          >
+
+          <button
+            type="button"
+            class="show-password"
+            data-target="confirmPassword"
+          >
+            Show
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="terms">
+
+        <input
+          id="terms"
+          type="checkbox"
+          required
+        >
+
+        <p>
+
+          I agree to the
+
+          <a href="terms.html">
+            Terms of Use
+          </a>
+
+          and acknowledge the
+
+          <a href="privacy.html">
+            Privacy Policy
+          </a>
+
+          and
+
+          <a href="risk.html">
+            Risk Disclosure
+          </a>.
+
+        </p>
+
+      </div>
+
+
+
+      <div
+        id="message"
+        class="message"
+      ></div>
+
+
+
+      <button
+        id="submitButton"
+        class="submit"
+        type="submit"
+      >
+        Create Wfunded Account
+      </button>
+
+
+    </form>
+
+
+
+    <div class="secure-note">
+
+      <strong>
+        Secure authentication
+      </strong>
+
+      <br>
+
+      Account authentication is handled through
+      Wfunded's authentication service. Your password
+      is not stored directly inside this website's
+      HTML or GitHub repository.
+
+    </div>
+
+
+
+    <div class="separator">
+      WFUNDED
+    </div>
+
+
+    <div class="signin">
+
+      Already have an account?
+
+      <a href="login.html">
+        Sign In
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+
+<footer>
+  © 2026 Wfunded. All rights reserved.
+</footer>
+
+
+
+<!-- Supabase JavaScript Client -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+  /* =====================================
+     WFUNDED SUPABASE CONFIGURATION
+  ====================================== */
+
+  const SUPABASE_URL =
+    "https://ymlbiotsxwizhcywozwx.supabase.co";
+
+
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_scMlN-89o0fiivYqvvMI1Q_Y3hazkIR";
+
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+
+  /* =====================================
+     FORM ELEMENTS
+  ====================================== */
+
+  const form =
+    document.getElementById("registerForm");
+
+
+  const message =
+    document.getElementById("message");
+
+
+  const submitButton =
+    document.getElementById("submitButton");
+
+
+
+  /* =====================================
+     MESSAGE DISPLAY
+  ====================================== */
+
+  function showMessage(
+    text,
+    type
+  ){
+
+    message.textContent =
+      text;
+
+
+    message.className =
+      "message " + type;
+
+  }
+
+
+
+  /* =====================================
+     PASSWORD SHOW / HIDE
+  ====================================== */
+
+  document
+    .querySelectorAll(".show-password")
+    .forEach(function(button){
+
+      button.addEventListener(
+        "click",
+        function(){
+
+          const target =
+            document.getElementById(
+              button.dataset.target
+            );
+
+
+          if(
+            target.type === "password"
+          ){
+
+            target.type =
+              "text";
+
+            button.textContent =
+              "Hide";
+
+          }
+
+          else{
+
+            target.type =
+              "password";
+
+            button.textContent =
+              "Show";
+
+          }
+
+        }
+      );
+
+    });
+
+
+
+  /* =====================================
+     REGISTER USER
+  ====================================== */
+
+  form.addEventListener(
+    "submit",
+    async function(event){
+
+      event.preventDefault();
+
+
+      message.className =
+        "message";
+
+
+      message.textContent =
+        "";
+
+
+      const firstName =
+        document
+          .getElementById("firstName")
+          .value
+          .trim();
+
+
+      const lastName =
+        document
+          .getElementById("lastName")
+          .value
+          .trim();
+
+
+      const email =
+        document
+          .getElementById("email")
+          .value
+          .trim()
+          .toLowerCase();
+
+
+      const phone =
+        document
+          .getElementById("phone")
+          .value
+          .trim();
+
+
+      const country =
+        document
+          .getElementById("country")
+          .value;
+
+
+      const password =
+        document
+          .getElementById("password")
+          .value;
+
+
+      const confirmPassword =
+        document
+          .getElementById("confirmPassword")
+          .value;
+
+
+
+      /* Password checks */
+
+      if(
+        password.length < 8
+      ){
+
+        showMessage(
+          "Your password must contain at least 8 characters.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if(
+        password !==
+        confirmPassword
+      ){
+
+        showMessage(
+          "The passwords do not match.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+
+      submitButton.disabled =
+        true;
+
+
+      submitButton.textContent =
+        "Creating Account...";
+
+
+      try{
+
+
+        const {
+          data,
+          error
+        } =
+        await supabaseClient
+          .auth
+          .signUp({
+
+            email:
+              email,
+
+            password:
+              password,
+
+            options:{
+
+              emailRedirectTo:
+                "https://wfunded.org/login.html?confirmed=1",
+
+              data:{
+
+                first_name:
+                  firstName,
+
+                last_name:
+                  lastName,
+
+                phone:
+                  phone,
+
+                country:
+                  country,
+
+                full_name:
+                  firstName +
+                  " " +
+                  lastName
+
+              }
+
+            }
+
+          });
+
+
+
+        if(error){
+
+          throw error;
+
+        }
+
+
+
+        /*
+          If email confirmation is enabled,
+          Supabase normally creates the user
+          but does not provide an active session
+          until email verification.
+        */
+
+        if(
+          data.user &&
+          !data.session
+        ){
+
+          showMessage(
+            "Account created. Check your email and open the verification link before signing in.",
+            "success"
+          );
+
+
+          form.reset();
+
+
+          submitButton.textContent =
+            "Verification Email Sent";
+
+        }
+
+
+        /*
+          If confirmation is disabled,
+          Supabase may immediately return
+          an authenticated session.
+        */
+
+        else if(
+          data.session
+        ){
+
+          showMessage(
+            "Account created successfully. Opening your Wfunded dashboard...",
+            "success"
+          );
+
+
+          setTimeout(
+            function(){
+
+              window.location.href =
+                "platform.html";
+
+            },
+            1200
+          );
+
+        }
+
+
+        else{
+
+          showMessage(
+            "Your account request was received. Please check your email before signing in.",
+            "success"
+          );
+
+        }
+
+
+      }
+
+      catch(error){
+
+        console.error(
+          "Registration error:",
+          error
+        );
+
+
+        let friendlyMessage =
+          "Unable to create your account right now. Please try again.";
+
+
+        if(
+          error &&
+          error.message
+        ){
+
+          const lower =
+            error.message
+              .toLowerCase();
+
+
+          if(
+            lower.includes(
+              "already registered"
+            )
+          ){
+
+            friendlyMessage =
+              "An account already exists for this email address. Try signing in instead.";
+
+          }
+
+          else if(
+            lower.includes(
+              "password"
+            )
+          ){
+
+            friendlyMessage =
+              error.message;
+
+          }
+
+          else if(
+            lower.includes(
+              "email"
+            )
+          ){
+
+            friendlyMessage =
+              error.message;
+
+          }
+
+        }
+
+
+        showMessage(
+          friendlyMessage,
+          "error"
+        );
+
+
+        submitButton.disabled =
+          false;
+
+
+        submitButton.textContent =
+          "Create Wfunded Account";
+
+      }
+
+    }
+  );
+
+</script>
+
+
+</body>
+
+</html>    .field label{
       color:#9da9b8;
       font-size:11px;
     }
