@@ -2,49 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Create Account | Wfunded</title>
 
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     :root {
       --bg: #030912;
-      --panel: #07121e;
-      --panel2: #091725;
+      --card: #07121e;
+      --field: #050f1a;
       --border: #17283a;
       --text: #f4f7fb;
       --muted: #8d9aaa;
       --purple: #7c3cff;
       --purple-light: #a679ff;
       --green: #25d98a;
-      --red: #ff4f65;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      --red: #ff6578;
     }
 
     body {
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
       background:
         radial-gradient(
           circle at 75% 10%,
-          rgba(124, 60, 255, 0.14),
-          transparent 30%
+          rgba(124, 60, 255, 0.16),
+          transparent 32%
         ),
         var(--bg);
+      color: var(--text);
     }
 
     a {
@@ -58,44 +50,39 @@
       font: inherit;
     }
 
-    .topbar {
-      min-height: 74px;
+    .header {
+      min-height: 72px;
       padding: 0 5%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
       border-bottom: 1px solid var(--border);
-      background: rgba(3, 9, 18, 0.94);
+      background: rgba(3, 9, 18, 0.96);
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       font-size: 23px;
       font-weight: 800;
     }
 
-    .logo-mark {
+    .logo-w {
       color: var(--purple-light);
       font-size: 31px;
       font-weight: 900;
       font-style: italic;
     }
 
-    .back-link {
+    .back {
       color: var(--muted);
-      font-size: 12px;
-    }
-
-    .back-link:hover {
-      color: white;
+      font-size: 11px;
     }
 
     .page {
       width: min(1080px, 94%);
-      margin: 48px auto 70px;
+      margin: 50px auto;
       display: grid;
       grid-template-columns: 0.85fr 1.15fr;
       gap: 50px;
@@ -103,110 +90,902 @@
     }
 
     .intro {
-      padding-top: 30px;
+      padding-top: 35px;
     }
 
     .eyebrow {
       margin-bottom: 14px;
       color: var(--purple-light);
-      font-size: 11px;
-      letter-spacing: 2.5px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .intro h1 {
-      max-width: 500px;
       margin-bottom: 20px;
       font-size: clamp(42px, 6vw, 64px);
-      line-height: 1.02;
+      line-height: 1.03;
     }
 
-    .intro-text {
-      max-width: 470px;
+    .intro p {
+      max-width: 450px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.8;
     }
 
-    .steps {
-      margin-top: 32px;
+    .benefits {
+      margin-top: 30px;
       display: grid;
-      gap: 12px;
+      gap: 11px;
     }
 
-    .step {
+    .benefit {
       padding: 15px;
       display: flex;
+      gap: 13px;
       align-items: center;
-      gap: 14px;
       border: 1px solid var(--border);
-      border-radius: 11px;
-      background: rgba(7, 18, 30, 0.75);
+      border-radius: 10px;
+      background: rgba(7, 18, 30, 0.7);
     }
 
-    .step-number {
-      width: 34px;
-      height: 34px;
+    .number {
+      width: 33px;
+      height: 33px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 9px;
+      border-radius: 8px;
       background: rgba(124, 60, 255, 0.13);
       color: var(--purple-light);
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
     }
 
-    .step strong {
+    .benefit strong {
       display: block;
       margin-bottom: 3px;
-      font-size: 12px;
+      font-size: 11px;
     }
 
-    .step span {
+    .benefit span {
       color: var(--muted);
-      font-size: 10px;
+      font-size: 9px;
     }
 
-    .register-card {
-      padding: 35px;
+    .card {
+      padding: 34px;
       border: 1px solid var(--border);
-      border-radius: 18px;
-      background:
-        linear-gradient(
-          145deg,
-          #07131f,
-          #050d17
-        );
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.32);
+      border-radius: 16px;
+      background: linear-gradient(145deg, #07131f, #050d17);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
     }
 
-    .register-card h2 {
+    .card h2 {
       margin-bottom: 7px;
       font-size: 27px;
     }
 
-    .card-subtitle {
-      margin-bottom: 27px;
+    .subtitle {
+      margin-bottom: 25px;
       color: var(--muted);
       font-size: 11px;
       line-height: 1.6;
     }
 
-    .form-grid {
+    .row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 15px;
+      gap: 14px;
     }
 
     .field {
       margin-bottom: 16px;
     }
 
-    .field.full {
-      grid-column: 1 / -1;
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #adb7c3;
+      font-size: 10px;
     }
+
+    input,
+    select {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      outline: none;
+      background: var(--field);
+      color: white;
+    }
+
+    input::placeholder {
+      color: #596779;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #7347d8;
+      box-shadow: 0 0 0 3px rgba(124, 60, 255, 0.1);
+    }
+
+    select option {
+      background: #07121e;
+      color: white;
+    }
+
+    .password-box {
+      position: relative;
+    }
+
+    .password-box input {
+      padding-right: 65px;
+    }
+
+    .toggle {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      border: 0;
+      background: transparent;
+      color: var(--purple-light);
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    .terms {
+      margin: 3px 0 19px;
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+    }
+
+    .terms input {
+      width: 18px;
+      height: 18px;
+      min-height: 18px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .terms p {
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.7;
+    }
+
+    .terms a {
+      color: var(--purple-light);
+    }
+
+    .message {
+      display: none;
+      margin-bottom: 16px;
+      padding: 14px;
+      border-radius: 9px;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .message.success {
+      display: block;
+      border: 1px solid rgba(37, 217, 138, 0.35);
+      background: rgba(37, 217, 138, 0.08);
+      color: #8cf0c2;
+    }
+
+    .message.error {
+      display: block;
+      border: 1px solid rgba(255, 101, 120, 0.35);
+      background: rgba(255, 101, 120, 0.07);
+      color: #ffadb7;
+    }
+
+    .submit {
+      width: 100%;
+      min-height: 50px;
+      border: 0;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #6930e8, #914cff);
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .submit:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .secure {
+      margin-top: 18px;
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #050f19;
+      color: #8290a0;
+      font-size: 9px;
+      line-height: 1.65;
+    }
+
+    .secure strong {
+      color: #b5bfca;
+    }
+
+    .signin {
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .signin a {
+      color: var(--purple-light);
+      font-weight: 700;
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      color: #647286;
+      font-size: 9px;
+    }
+
+    @media (max-width: 800px) {
+      .page {
+        margin-top: 25px;
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .intro {
+        padding-top: 5px;
+      }
+
+      .benefits {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: 94%;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .card {
+        padding: 24px 19px;
+      }
+
+      .intro h1 {
+        font-size: 44px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <a href="index.html" class="logo">
+      <span class="logo-w">W</span>
+      <span>Wfunded</span>
+    </a>
+
+    <a href="index.html" class="back">
+      ← Back to website
+    </a>
+  </header>
+
+
+  <main class="page">
+
+    <section class="intro">
+      <div class="eyebrow">
+        Wfunded Account
+      </div>
+
+      <h1>
+        Create your account.
+      </h1>
+
+      <p>
+        Join Wfunded and access your account dashboard,
+        market tools and profile from one place.
+      </p>
+
+      <div class="benefits">
+
+        <div class="benefit">
+          <div class="number">01</div>
+          <div>
+            <strong>Create Your Account</strong>
+            <span>Enter your personal account details.</span>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="number">02</div>
+          <div>
+            <strong>Verify Your Email</strong>
+            <span>Confirm your email address securely.</span>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="number">03</div>
+          <div>
+            <strong>Sign In</strong>
+            <span>Access your Wfunded account.</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="card">
+
+      <h2>Create Account</h2>
+
+      <p class="subtitle">
+        Enter your details to register with Wfunded.
+      </p>
+
+
+      <form id="registerForm">
+
+        <div class="row">
+
+          <div class="field">
+            <label for="firstName">
+              First Name
+            </label>
+
+            <input
+              id="firstName"
+              type="text"
+              autocomplete="given-name"
+              placeholder="First name"
+              required
+            >
+          </div>
+
+
+          <div class="field">
+            <label for="lastName">
+              Last Name
+            </label>
+
+            <input
+              id="lastName"
+              type="text"
+              autocomplete="family-name"
+              placeholder="Last name"
+              required
+            >
+          </div>
+
+        </div>
+
+
+        <div class="field">
+          <label for="email">
+            Email Address
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            required
+          >
+        </div>
+
+
+        <div class="field">
+          <label for="phone">
+            Phone Number
+          </label>
+
+          <input
+            id="phone"
+            type="tel"
+            autocomplete="tel"
+            placeholder="+1 000 000 0000"
+          >
+        </div>
+
+
+        <div class="field">
+          <label for="country">
+            Country
+          </label>
+
+          <select id="country" required>
+            <option value="">
+              Select country
+            </option>
+
+            <option value="United States">
+              United States
+            </option>
+
+            <option value="United Kingdom">
+              United Kingdom
+            </option>
+
+            <option value="Canada">
+              Canada
+            </option>
+
+            <option value="Australia">
+              Australia
+            </option>
+
+            <option value="Netherlands">
+              Netherlands
+            </option>
+
+            <option value="Germany">
+              Germany
+            </option>
+
+            <option value="France">
+              France
+            </option>
+
+            <option value="South Africa">
+              South Africa
+            </option>
+
+            <option value="Nigeria">
+              Nigeria
+            </option>
+
+            <option value="Ghana">
+              Ghana
+            </option>
+
+            <option value="Kenya">
+              Kenya
+            </option>
+
+            <option value="Other">
+              Other
+            </option>
+          </select>
+        </div>
+
+
+        <div class="field">
+          <label for="password">
+            Password
+          </label>
+
+          <div class="password-box">
+
+            <input
+              id="password"
+              type="password"
+              minlength="8"
+              autocomplete="new-password"
+              placeholder="At least 8 characters"
+              required
+            >
+
+            <button
+              type="button"
+              class="toggle"
+              data-target="password"
+            >
+              Show
+            </button>
+
+          </div>
+        </div>
+
+
+        <div class="field">
+          <label for="confirmPassword">
+            Confirm Password
+          </label>
+
+          <div class="password-box">
+
+            <input
+              id="confirmPassword"
+              type="password"
+              minlength="8"
+              autocomplete="new-password"
+              placeholder="Repeat your password"
+              required
+            >
+
+            <button
+              type="button"
+              class="toggle"
+              data-target="confirmPassword"
+            >
+              Show
+            </button>
+
+          </div>
+        </div>
+
+
+        <div class="terms">
+
+          <input
+            id="agree"
+            type="checkbox"
+            required
+          >
+
+          <p>
+            I agree to the
+            <a href="terms.html">Terms of Use</a>,
+            acknowledge the
+            <a href="privacy.html">Privacy Policy</a>
+            and understand the
+            <a href="risk.html">Risk Disclosure</a>.
+          </p>
+
+        </div>
+
+
+        <div
+          id="message"
+          class="message"
+          aria-live="polite"
+        ></div>
+
+
+        <button
+          id="submitButton"
+          class="submit"
+          type="submit"
+        >
+          Create Wfunded Account
+        </button>
+
+      </form>
+
+
+      <div class="secure">
+        <strong>Secure authentication</strong><br>
+        Your login password is handled by the authentication
+        service and is not stored directly inside Wfunded's
+        public website files.
+      </div>
+
+
+      <div class="signin">
+        Already registered?
+        <a href="login.html">Sign In</a>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    © 2026 Wfunded. All rights reserved.
+  </footer>
+
+
+  <!-- Supabase browser library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <script>
+    const SUPABASE_URL =
+      "https://ymlbiotsxwizhcywozwx.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_scMlN-89o0fiivYqvvMI1Q_Y3hazkIR";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    const form =
+      document.getElementById("registerForm");
+
+    const message =
+      document.getElementById("message");
+
+    const submitButton =
+      document.getElementById("submitButton");
+
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = "message " + type;
+    }
+
+
+    document
+      .querySelectorAll(".toggle")
+      .forEach(function(button) {
+
+        button.addEventListener(
+          "click",
+          function() {
+
+            const input =
+              document.getElementById(
+                button.dataset.target
+              );
+
+            if (input.type === "password") {
+              input.type = "text";
+              button.textContent = "Hide";
+            } else {
+              input.type = "password";
+              button.textContent = "Show";
+            }
+
+          }
+        );
+
+      });
+
+
+    form.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+        message.className = "message";
+        message.textContent = "";
+
+
+        const firstName =
+          document
+            .getElementById("firstName")
+            .value
+            .trim();
+
+        const lastName =
+          document
+            .getElementById("lastName")
+            .value
+            .trim();
+
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim()
+            .toLowerCase();
+
+        const phone =
+          document
+            .getElementById("phone")
+            .value
+            .trim();
+
+        const country =
+          document
+            .getElementById("country")
+            .value;
+
+        const password =
+          document
+            .getElementById("password")
+            .value;
+
+        const confirmPassword =
+          document
+            .getElementById("confirmPassword")
+            .value;
+
+
+        if (password.length < 8) {
+          showMessage(
+            "Your password must contain at least 8 characters.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        if (password !== confirmPassword) {
+          showMessage(
+            "The passwords do not match.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+          "Creating Account...";
+
+
+        try {
+
+          const result =
+            await supabaseClient.auth.signUp({
+              email: email,
+              password: password,
+
+              options: {
+                emailRedirectTo:
+                  "https://wfunded.org/login.html?verified=1",
+
+                data: {
+                  first_name: firstName,
+                  last_name: lastName,
+                  full_name:
+                    firstName + " " + lastName,
+                  phone: phone,
+                  country: country
+                }
+              }
+            });
+
+
+          if (result.error) {
+            throw result.error;
+          }
+
+
+          /*
+            EMAIL VERIFICATION ENABLED
+          */
+
+          if (
+            result.data.user &&
+            !result.data.session
+          ) {
+
+            form.reset();
+
+            showMessage(
+              "Account created successfully. We sent a verification link to " +
+              email +
+              ". Please verify your email before signing in.",
+              "success"
+            );
+
+            submitButton.textContent =
+              "Verification Email Sent";
+
+            return;
+          }
+
+
+          /*
+            EMAIL VERIFICATION DISABLED
+          */
+
+          if (result.data.session) {
+
+            /*
+              Sign the newly created user out.
+              This prevents a brand-new user
+              from immediately seeing a
+              returning-user dashboard.
+            */
+
+            await supabaseClient.auth.signOut();
+
+            form.reset();
+
+            showMessage(
+              "Your Wfunded account has been created successfully. You can now sign in.",
+              "success"
+            );
+
+            submitButton.textContent =
+              "Account Created";
+
+
+            setTimeout(function() {
+              window.location.href =
+                "login.html?new=1";
+            }, 1800);
+
+            return;
+          }
+
+
+          form.reset();
+
+          showMessage(
+            "Your account has been created. Please check your email before signing in.",
+            "success"
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Registration error:",
+            error
+          );
+
+
+          let text =
+            "Unable to create your account right now. Please try again.";
+
+
+          if (
+            error &&
+            error.message
+          ) {
+
+            const lower =
+              error.message.toLowerCase();
+
+
+            if (
+              lower.includes("password")
+            ) {
+              text = error.message;
+            }
+
+            else if (
+              lower.includes("email")
+            ) {
+              text = error.message;
+            }
+
+            else if (
+              lower.includes("rate")
+            ) {
+              text =
+                "Too many attempts. Please wait a moment and try again.";
+            }
+
+          }
+
+
+          showMessage(
+            text,
+            "error"
+          );
+
+
+          submitButton.disabled = false;
+
+          submitButton.textContent =
+            "Create Wfunded Account";
+
+        }
+
+      }
+    );
+  </script>
+
+</body>
+</html>    }
 
     label {
       display: block;
