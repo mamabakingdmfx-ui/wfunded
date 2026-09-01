@@ -11,14 +11,14 @@
 :root{
   --bg:#030912;
   --panel:#07121e;
-  --panel2:#0a1725;
+  --panel2:#091725;
   --border:#17283a;
   --text:#f4f7fb;
   --muted:#8d9aaa;
   --purple:#7c3cff;
   --purple2:#9b6cff;
   --green:#25d98a;
-  --gold:#d5b45c;
+  --red:#ff4f65;
 }
 
 *{
@@ -34,15 +34,15 @@ html{
 body{
   min-height:100vh;
   background:
-    radial-gradient(circle at 80% 4%,rgba(124,60,255,.13),transparent 30%),
+    radial-gradient(circle at 80% 5%,rgba(124,60,255,.13),transparent 30%),
     linear-gradient(180deg,#030912 0%,#040b14 100%);
   color:var(--text);
   font-family:Arial,Helvetica,sans-serif;
 }
 
 a{
-  text-decoration:none;
   color:inherit;
+  text-decoration:none;
 }
 
 button,
@@ -52,9 +52,7 @@ textarea{
   font:inherit;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header{
   position:sticky;
@@ -67,45 +65,43 @@ textarea{
 
 .header-inner{
   max-width:1250px;
-  min-height:98px;
   margin:auto;
-  padding:0 24px;
+  min-height:98px;
+  padding:0 22px;
   display:flex;
   align-items:center;
-  gap:28px;
+  gap:24px;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
   flex-shrink:0;
 }
 
 .brand-mark{
-  width:48px;
-  color:var(--purple2);
-  font-size:44px;
+  width:44px;
+  font-size:42px;
   font-weight:900;
   font-style:italic;
-  letter-spacing:-8px;
+  color:var(--purple2);
 }
 
 .brand-name{
-  font-size:31px;
+  font-size:29px;
   font-weight:800;
-  letter-spacing:-1px;
 }
 
 .desktop-nav{
   margin-left:auto;
   display:flex;
   align-items:center;
-  gap:27px;
+  gap:25px;
 }
 
 .desktop-nav a{
-  color:#b7c1cd;
+  color:#b8c2ce;
   font-size:15px;
   font-weight:600;
   white-space:nowrap;
@@ -113,7 +109,7 @@ textarea{
 
 .desktop-nav a:hover,
 .desktop-nav a.active{
-  color:white;
+  color:#fff;
 }
 
 .account-btn{
@@ -121,36 +117,35 @@ textarea{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  padding:0 22px;
+  padding:0 20px;
   border-radius:12px;
   background:linear-gradient(135deg,#6928eb,#914dff);
-  color:white!important;
-  font-weight:800!important;
+  color:#fff !important;
+  font-weight:800 !important;
 }
 
 .mobile-account{
   display:none;
+  margin-left:auto;
 }
 
 .menu-btn{
   display:none;
   width:52px;
   height:52px;
-  align-items:center;
-  justify-content:center;
   border:1px solid var(--border);
   border-radius:12px;
   background:var(--panel);
-  color:white;
-  font-size:25px;
+  color:#fff;
+  font-size:26px;
+  align-items:center;
+  justify-content:center;
   cursor:pointer;
 }
 
 .mobile-menu{
   display:none;
-  max-width:1250px;
-  margin:auto;
-  padding:0 22px 22px;
+  padding:0 20px 20px;
 }
 
 .mobile-menu.open{
@@ -159,28 +154,26 @@ textarea{
 }
 
 .mobile-menu a{
-  padding:17px 18px;
+  padding:16px 17px;
   border-radius:11px;
   background:#07131f;
   color:#bbc4cf;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
   max-width:1250px;
   margin:auto;
-  padding:68px 24px 32px;
+  padding:62px 22px 28px;
 }
 
 .hero-card{
   position:relative;
   overflow:hidden;
-  padding:48px 42px;
   border:1px solid var(--border);
-  border-radius:24px;
+  border-radius:22px;
+  padding:44px 38px;
   background:
     linear-gradient(120deg,rgba(124,60,255,.11),transparent 55%),
     var(--panel);
@@ -189,22 +182,1068 @@ textarea{
 .hero-card:after{
   content:"";
   position:absolute;
-  width:350px;
-  height:350px;
-  right:-140px;
-  top:-170px;
+  right:-130px;
+  top:-160px;
+  width:330px;
+  height:330px;
   border-radius:50%;
-  background:rgba(124,60,255,.13);
+  background:rgba(124,60,255,.12);
 }
 
 .eyebrow{
   position:relative;
   z-index:2;
   color:var(--purple2);
-  font-size:13px;
+  text-transform:uppercase;
+  font-size:12px;
   font-weight:800;
   letter-spacing:2.7px;
-  text-transform:uppercase;
+  margin-bottom:17px;
+}
+
+.hero h1{
+  position:relative;
+  z-index:2;
+  font-size:52px;
+  line-height:1.05;
+  letter-spacing:-2px;
+  margin-bottom:17px;
+}
+
+.hero p{
+  position:relative;
+  z-index:2;
+  max-width:720px;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.7;
+}
+
+/* MAIN */
+
+.main{
+  max-width:1250px;
+  margin:auto;
+  padding:10px 22px 75px;
+}
+
+/* CONTACT CARDS */
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-bottom:22px;
+}
+
+.contact-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px;
+}
+
+.contact-icon{
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:11px;
+  background:rgba(124,60,255,.13);
+  color:var(--purple2);
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:14px;
+}
+
+.contact-card h3{
+  font-size:16px;
+  margin-bottom:7px;
+}
+
+.contact-card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.contact-card a{
+  display:inline-block;
+  margin-top:10px;
+  color:#b798ff;
+  font-size:13px;
+  font-weight:700;
+}
+
+/* SUPPORT GRID */
+
+.support-grid{
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:20px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:19px;
+  overflow:hidden;
+}
+
+.card-head{
+  padding:22px 23px;
+  border-bottom:1px solid var(--border);
+}
+
+.card-head h2{
+  font-size:21px;
+  margin-bottom:6px;
+}
+
+.card-head p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.card-body{
+  padding:23px;
+}
+
+/* FORM */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full{
+  grid-column:1 / -1;
+}
+
+.field label{
+  color:#aab4c0;
+  font-size:12px;
+  font-weight:700;
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#040d17;
+  color:#fff;
+  padding:13px 14px;
+  outline:none;
+}
+
+.field input,
+.field select{
+  min-height:50px;
+}
+
+.field textarea{
+  min-height:145px;
+  resize:vertical;
+  line-height:1.6;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--purple);
+  box-shadow:0 0 0 3px rgba(124,60,255,.08);
+}
+
+.field input::placeholder,
+.field textarea::placeholder{
+  color:#657384;
+}
+
+.submit-row{
+  grid-column:1 / -1;
+  margin-top:4px;
+}
+
+.primary-btn{
+  width:100%;
+  min-height:53px;
+  border:0;
+  border-radius:11px;
+  background:linear-gradient(135deg,#6930e8,#8b4dff);
+  color:white;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.primary-btn:disabled{
+  opacity:.7;
+  cursor:not-allowed;
+}
+
+.form-status{
+  display:none;
+  margin-top:14px;
+  padding:13px 14px;
+  border-radius:10px;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.form-status.success{
+  display:block;
+  color:var(--green);
+  border:1px solid rgba(37,217,138,.22);
+  background:rgba(37,217,138,.05);
+}
+
+.form-status.error{
+  display:block;
+  color:var(--red);
+  border:1px solid rgba(255,79,101,.22);
+  background:rgba(255,79,101,.05);
+}
+
+.security-note{
+  margin-top:12px;
+  color:#758293;
+  font-size:11px;
+  line-height:1.6;
+}
+
+/* SIDE PANEL */
+
+.help-list{
+  display:grid;
+  gap:11px;
+}
+
+.help-item{
+  background:var(--panel2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+}
+
+.help-item strong{
+  display:block;
+  font-size:13px;
+  margin-bottom:6px;
+}
+
+.help-item p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+.support-status{
+  margin-top:15px;
+  padding:16px;
+  border:1px solid rgba(37,217,138,.20);
+  background:rgba(37,217,138,.04);
+  border-radius:12px;
+}
+
+.support-status strong{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:var(--green);
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+.support-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--green);
+}
+
+.support-status p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+/* FAQ */
+
+.faq-section{
+  margin-top:26px;
+}
+
+.faq-section h2{
+  font-size:27px;
+  margin-bottom:15px;
+}
+
+.faq-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+
+.faq-item{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:19px;
+}
+
+.faq-item h3{
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.faq-item p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.65;
+}
+
+/* FOOTER */
+
+footer{
+  border-top:1px solid var(--border);
+  padding:34px 22px;
+  color:#687587;
+}
+
+.footer-inner{
+  max-width:1250px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  font-size:12px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+
+  .desktop-nav{
+    display:none;
+  }
+
+  .mobile-account{
+    display:inline-flex;
+  }
+
+  .menu-btn{
+    display:flex;
+  }
+
+  .support-grid{
+    grid-template-columns:1fr;
+  }
+
+  .contact-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:650px){
+
+  .header-inner{
+    min-height:98px;
+    padding:0 18px;
+    gap:11px;
+  }
+
+  .brand{
+    gap:7px;
+  }
+
+  .brand-mark{
+    width:41px;
+    font-size:38px;
+  }
+
+  .brand-name{
+    font-size:24px;
+  }
+
+  .mobile-account{
+    min-height:47px;
+    padding:0 14px;
+    font-size:12px;
+  }
+
+  .menu-btn{
+    width:48px;
+    height:48px;
+  }
+
+  .hero{
+    padding:42px 17px 24px;
+  }
+
+  .hero-card{
+    padding:32px 23px;
+    border-radius:18px;
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
+
+  .hero p{
+    font-size:15px;
+  }
+
+  .main{
+    padding:8px 17px 60px;
+  }
+
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full,
+  .submit-row{
+    grid-column:auto;
+  }
+
+  .faq-grid{
+    grid-template-columns:1fr;
+  }
+
+  .card-head,
+  .card-body{
+    padding-left:19px;
+    padding-right:19px;
+  }
+}
+
+@media(max-width:410px){
+
+  .brand-name{
+    font-size:22px;
+  }
+
+  .mobile-account{
+    font-size:11px;
+    padding:0 11px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+  <div class="header-inner">
+
+    <a href="index.html" class="brand">
+      <span class="brand-mark">W</span>
+      <span class="brand-name">Wfunded</span>
+    </a>
+
+    <nav class="desktop-nav">
+      <a href="markets.html">Markets</a>
+      <a href="invest.html">Invest</a>
+      <a href="profile.html">My Account</a>
+      <a href="about.html">About Us</a>
+      <a href="support.html" class="active">Support</a>
+    </nav>
+
+    <a href="profile.html" class="account-btn mobile-account">
+      My Account
+    </a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+      ☰
+    </button>
+
+  </div>
+
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="markets.html">Markets</a>
+    <a href="invest.html">Invest</a>
+    <a href="profile.html">My Account</a>
+    <a href="about.html">About Us</a>
+    <a href="support.html">Support</a>
+  </nav>
+
+</header>
+
+
+<section class="hero">
+
+  <div class="hero-card">
+
+    <div class="eyebrow">
+      Wfunded Client Support
+    </div>
+
+    <h1>
+      Contact Us
+    </h1>
+
+    <p>
+      Our support team is available to assist with account access,
+      payment verification, investment enquiries and general Wfunded services.
+    </p>
+
+  </div>
+
+</section>
+
+
+<main class="main">
+
+  <section class="contact-grid">
+
+    <div class="contact-card">
+
+      <div class="contact-icon">
+        ✉
+      </div>
+
+      <h3>Email Support</h3>
+
+      <p>
+        Contact the Wfunded Support desk directly for account and service assistance.
+      </p>
+
+      <a href="mailto:support@wfunded.org">
+        support@wfunded.org
+      </a>
+
+    </div>
+
+
+    <div class="contact-card">
+
+      <div class="contact-icon">
+        ✓
+      </div>
+
+      <h3>Account Assistance</h3>
+
+      <p>
+        Get help with registration, sign-in, account information and payment records.
+      </p>
+
+    </div>
+
+
+    <div class="contact-card">
+
+      <div class="contact-icon">
+        #
+      </div>
+
+      <h3>Payment Support</h3>
+
+      <p>
+        Include the relevant transaction reference or TXID when requesting payment assistance.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="support-grid">
+
+    <div class="card">
+
+      <div class="card-head">
+
+        <h2>Submit a Support Request</h2>
+
+        <p>
+          Complete the form below and your message will be routed to Wfunded Support.
+        </p>
+
+      </div>
+
+      <div class="card-body">
+
+        <form id="supportForm">
+
+          <div class="form-grid">
+
+            <div class="field">
+
+              <label for="fullName">
+                Full Name
+              </label>
+
+              <input
+                id="fullName"
+                type="text"
+                name="Full Name"
+                placeholder="Enter your full name"
+                required
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="email">
+                Email Address
+              </label>
+
+              <input
+                id="email"
+                type="email"
+                name="Email"
+                placeholder="you@example.com"
+                required
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="category">
+                Request Category
+              </label>
+
+              <select
+                id="category"
+                name="Category"
+                required
+              >
+
+                <option value="">
+                  Select a category
+                </option>
+
+                <option>Account Access</option>
+                <option>Registration</option>
+                <option>Payment Verification</option>
+                <option>Investment Enquiry</option>
+                <option>Transaction Enquiry</option>
+                <option>Technical Support</option>
+                <option>General Enquiry</option>
+
+              </select>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="reference">
+                Reference
+              </label>
+
+              <input
+                id="reference"
+                type="text"
+                name="Reference"
+                placeholder="Optional"
+              >
+
+            </div>
+
+
+            <div class="field full">
+
+              <label for="subject">
+                Subject
+              </label>
+
+              <input
+                id="subject"
+                type="text"
+                name="Subject"
+                placeholder="Briefly describe your request"
+                required
+              >
+
+            </div>
+
+
+            <div class="field full">
+
+              <label for="message">
+                Message
+              </label>
+
+              <textarea
+                id="message"
+                name="Message"
+                placeholder="Tell us how we can assist you..."
+                required
+              ></textarea>
+
+            </div>
+
+
+            <div class="submit-row">
+
+              <button
+                type="submit"
+                class="primary-btn"
+                id="submitBtn"
+              >
+                Submit Request
+              </button>
+
+              <div
+                class="form-status"
+                id="formStatus"
+              ></div>
+
+              <div class="security-note">
+                Never include passwords, authentication codes,
+                wallet recovery phrases or private keys in a support request.
+              </div>
+
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+
+    <aside class="card">
+
+      <div class="card-head">
+
+        <h2>
+          Support Centre
+        </h2>
+
+        <p>
+          Help us resolve your request efficiently by providing the relevant information.
+        </p>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="help-list">
+
+          <div class="help-item">
+
+            <strong>
+              Account Support
+            </strong>
+
+            <p>
+              Use the email address associated with your Wfunded account.
+            </p>
+
+          </div>
+
+
+          <div class="help-item">
+
+            <strong>
+              Payment Enquiries
+            </strong>
+
+            <p>
+              Provide the network, amount and transaction reference or TXID when applicable.
+            </p>
+
+          </div>
+
+
+          <div class="help-item">
+
+            <strong>
+              Registration Assistance
+            </strong>
+
+            <p>
+              Explain the issue you encountered and the email address used during registration.
+            </p>
+
+          </div>
+
+
+          <div class="help-item">
+
+            <strong>
+              General Enquiries
+            </strong>
+
+            <p>
+              Include enough detail for the support team to understand and respond to your request.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="support-status">
+
+          <strong>
+            <span class="support-dot"></span>
+            Wfunded Support
+          </strong>
+
+          <p>
+            Email correspondence is handled through
+            support@wfunded.org.
+          </p>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+  </section>
+
+
+  <section class="faq-section">
+
+    <h2>
+      Frequently Asked Questions
+    </h2>
+
+    <div class="faq-grid">
+
+      <div class="faq-item">
+
+        <h3>
+          Where can I review my account?
+        </h3>
+
+        <p>
+          Sign in and select My Account to review your account details and recorded funding activity.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <h3>
+          How do I submit payment information?
+        </h3>
+
+        <p>
+          Select an investment option and continue to the payment page to submit the relevant transaction details.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <h3>
+          What should I include for payment support?
+        </h3>
+
+        <p>
+          Include your network, payment amount and transaction hash or reference whenever applicable.
+        </p>
+
+      </div>
+
+
+      <div class="faq-item">
+
+        <h3>
+          Will support ask for my password?
+        </h3>
+
+        <p>
+          Never send your password, authentication codes, recovery phrase or private keys by email or through this form.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="footer-inner">
+
+    <span>
+      © 2026 Wfunded. All rights reserved.
+    </span>
+
+    <span>
+      support@wfunded.org · wfunded.org
+    </span>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+/* MOBILE MENU */
+
+const menuBtn =
+  document.getElementById("menuBtn");
+
+const mobileMenu =
+  document.getElementById("mobileMenu");
+
+menuBtn.addEventListener(
+  "click",
+  function(){
+
+    mobileMenu.classList.toggle("open");
+
+    menuBtn.textContent =
+      mobileMenu.classList.contains("open")
+        ? "✕"
+        : "☰";
+
+  }
+);
+
+
+/* SUPPORT FORM */
+
+const supportForm =
+  document.getElementById("supportForm");
+
+const submitBtn =
+  document.getElementById("submitBtn");
+
+const formStatus =
+  document.getElementById("formStatus");
+
+
+supportForm.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+    submitBtn.disabled = true;
+
+    submitBtn.textContent =
+      "Sending Request...";
+
+    formStatus.className =
+      "form-status";
+
+    formStatus.textContent =
+      "";
+
+
+    const formData =
+      new FormData(supportForm);
+
+    const payload = {};
+
+    formData.forEach(
+      function(value,key){
+
+        payload[key] = value;
+
+      }
+    );
+
+
+    payload["_subject"] =
+      "New Wfunded Support Request";
+
+
+    try{
+
+      const response =
+        await fetch(
+          "https://formsubmit.co/ajax/support@wfunded.org",
+          {
+            method:"POST",
+
+            headers:{
+              "Content-Type":"application/json",
+              "Accept":"application/json"
+            },
+
+            body:JSON.stringify(payload)
+          }
+        );
+
+
+      if(!response.ok){
+
+        throw new Error(
+          "Submission failed"
+        );
+
+      }
+
+
+      const result =
+        await response.json();
+
+
+      formStatus.className =
+        "form-status success";
+
+      formStatus.textContent =
+        "Your support request has been submitted successfully.";
+
+      supportForm.reset();
+
+    }
+
+    catch(error){
+
+      console.error(error);
+
+      formStatus.className =
+        "form-status error";
+
+      formStatus.innerHTML =
+        'Your request could not be sent automatically. Please email <a href="mailto:support@wfunded.org" style="color:#b798ff;font-weight:700;">support@wfunded.org</a>.';
+
+    }
+
+    finally{
+
+      submitBtn.disabled = false;
+
+      submitBtn.textContent =
+        "Submit Request";
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>  text-transform:uppercase;
   margin-bottom:18px;
 }
 
