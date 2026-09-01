@@ -1,210 +1,1724 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#030912">
 
   <title>Markets | Wfunded</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg:#030912;
+      --panel:#07121e;
+      --panel2:#0a1725;
+      --panel3:#0c1b2b;
+      --border:#17283a;
+      --text:#f4f7fb;
+      --muted:#8d9aaa;
+      --purple:#7c3cff;
+      --purple2:#9b6cff;
+      --green:#25d98a;
+      --red:#ff4f65;
+      --orange:#ff9418;
+      --gold:#d8ad26;
     }
 
-    :root {
-      --bg: #030912;
-      --panel: #07121e;
-      --panel-2: #0a1725;
-      --border: #17283a;
-      --text: #f4f7fb;
-      --muted: #8d9aaa;
-      --purple: #7c3cff;
-      --purple-light: #9b6cff;
-      --green: #25d98a;
-      --red: #ff4f65;
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
       background:
-        radial-gradient(circle at 80% 10%, rgba(124,60,255,.10), transparent 30%),
-        var(--bg);
-      color: var(--text);
-      min-height: 100vh;
+        radial-gradient(circle at 85% 5%, rgba(124,60,255,.12), transparent 30%),
+        linear-gradient(180deg,#030912 0%,#050b14 100%);
+      color:var(--text);
+      font-family:Arial,Helvetica,sans-serif;
+      min-height:100vh;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a{
+      color:inherit;
+      text-decoration:none;
     }
 
     button,
-    input {
-      font: inherit;
+    input{
+      font:inherit;
     }
 
-    nav {
-      min-height: 72px;
-      padding: 0 4%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-      background: rgba(3,9,18,.9);
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(12px);
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(3,9,18,.96);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--border);
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 24px;
-      font-weight: 800;
+    .header-inner{
+      max-width:1250px;
+      margin:auto;
+      min-height:98px;
+      padding:0 24px;
+      display:flex;
+      align-items:center;
+      gap:30px;
     }
 
-    .logo-mark {
-      color: var(--purple-light);
-      font-size: 30px;
-      font-weight: 900;
-      transform: skew(-15deg);
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-shrink:0;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      color: #b9c2ce;
-      font-size: 14px;
+    .brand-mark{
+      font-size:45px;
+      line-height:1;
+      font-weight:900;
+      font-style:italic;
+      color:var(--purple2);
+      letter-spacing:-8px;
+      width:50px;
     }
 
-    .nav-links a:hover,
-    .nav-links .active {
-      color: white;
+    .brand-name{
+      font-size:31px;
+      font-weight:800;
+      letter-spacing:-1px;
     }
 
-    .nav-actions {
-      display: flex;
-      gap: 10px;
+    .desktop-nav{
+      display:flex;
+      align-items:center;
+      gap:26px;
+      margin-left:auto;
     }
 
-    .login,
-    .create {
-      padding: 11px 20px;
-      border-radius: 8px;
-      color: white;
+    .desktop-nav a{
+      color:#b6c0cd;
+      font-size:15px;
+      font-weight:600;
+      transition:.2s;
+      white-space:nowrap;
     }
 
-    .login {
-      background: transparent;
-      border: 1px solid var(--border);
+    .desktop-nav a:hover,
+    .desktop-nav a.active{
+      color:#fff;
     }
 
-    .create {
-      border: none;
-      background: linear-gradient(135deg, #6930e8, #8b4dff);
-      font-weight: 700;
+    .create-btn{
+      margin-left:8px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:0 22px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#6928eb,#914dff);
+      color:#fff !important;
+      font-weight:800 !important;
     }
 
-    .page {
-      width: min(1200px, 92%);
-      margin: 36px auto 70px;
+    .menu-btn{
+      display:none;
+      width:56px;
+      height:56px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:var(--panel);
+      color:white;
+      cursor:pointer;
+      font-size:26px;
+      align-items:center;
+      justify-content:center;
     }
 
-    .hero {
-      padding: 34px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
+    .mobile-menu{
+      display:none;
+      padding:0 22px 22px;
+      max-width:1250px;
+      margin:auto;
+    }
+
+    .mobile-menu.open{
+      display:grid;
+      gap:8px;
+    }
+
+    .mobile-menu a{
+      padding:17px 18px;
+      border-radius:11px;
+      background:#07131f;
+      color:#b8c2ce;
+      font-size:16px;
+      border:1px solid transparent;
+    }
+
+    .mobile-menu a:hover{
+      border-color:var(--border);
+      color:white;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero{
+      max-width:1250px;
+      margin:auto;
+      padding:72px 24px 35px;
+    }
+
+    .hero-box{
+      position:relative;
+      overflow:hidden;
       background:
-        radial-gradient(circle at 85% 50%, rgba(124,60,255,.12), transparent 35%),
-        linear-gradient(145deg, #07121e, #050d17);
-      margin-bottom: 28px;
+        linear-gradient(120deg,rgba(124,60,255,.10),transparent 48%),
+        var(--panel);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:46px 40px;
     }
 
-    .eyebrow {
-      color: var(--purple-light);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 700;
-      margin-bottom: 12px;
+    .hero-box:after{
+      content:"";
+      position:absolute;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      right:-110px;
+      top:-150px;
+      background:rgba(124,60,255,.12);
+      filter:blur(10px);
     }
 
-    .hero h1 {
-      font-size: clamp(36px, 6vw, 58px);
-      margin-bottom: 12px;
+    .eyebrow{
+      color:var(--purple2);
+      text-transform:uppercase;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:3px;
+      margin-bottom:20px;
     }
 
-    .hero p {
-      color: var(--muted);
-      max-width: 700px;
-      line-height: 1.7;
+    h1{
+      font-size:54px;
+      line-height:1;
+      margin-bottom:20px;
+      letter-spacing:-2px;
     }
 
-    .controls {
-      display: flex;
-      gap: 14px;
-      justify-content: space-between;
-      align-items: center;
-      margin: 26px 0 18px;
-      flex-wrap: wrap;
+    .hero p{
+      color:var(--muted);
+      max-width:720px;
+      font-size:18px;
+      line-height:1.7;
     }
 
-    .tabs {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+    /* =========================
+       MARKET STATS
+    ========================= */
+
+    .overview{
+      max-width:1250px;
+      margin:0 auto;
+      padding:0 24px 30px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
     }
 
-    .tab {
-      border: 1px solid var(--border);
-      background: #07121e;
-      color: var(--muted);
-      padding: 10px 16px;
-      border-radius: 8px;
-      cursor: pointer;
+    .overview-card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:20px;
     }
 
-    .tab.active {
-      color: white;
-      border-color: #5d35b8;
-      background: rgba(124,60,255,.12);
+    .overview-label{
+      color:var(--muted);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1.3px;
+      margin-bottom:9px;
     }
 
-    .search {
-      min-width: 280px;
-      flex: 1;
-      max-width: 360px;
+    .overview-value{
+      font-size:20px;
+      font-weight:800;
     }
 
-    .search input {
-      width: 100%;
-      background: #07121e;
-      border: 1px solid var(--border);
-      color: white;
-      padding: 12px 14px;
-      border-radius: 9px;
-      outline: none;
+    .overview-sub{
+      color:var(--green);
+      font-size:12px;
+      margin-top:7px;
     }
 
-    .search input:focus {
-      border-color: #6c3fd4;
+    /* =========================
+       TOOLBAR
+    ========================= */
+
+    .market-area{
+      max-width:1250px;
+      margin:auto;
+      padding:0 24px 80px;
     }
 
-    .market-panel {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      background: rgba(7,18,30,.8);
+    .toolbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      margin-bottom:20px;
     }
 
-    .market-header,
-    .market-row {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1.5fr .8fr;
+    .tabs{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .tab{
+      border:1px solid var(--border);
+      background:var(--panel);
+      color:var(--muted);
+      padding:13px 20px;
+      border-radius:11px;
+      cursor:pointer;
+      font-weight:600;
+      transition:.2s;
+    }
+
+    .tab:hover{
+      color:white;
+    }
+
+    .tab.active{
+      border-color:var(--purple);
+      background:rgba(124,60,255,.12);
+      color:white;
+      box-shadow:0 0 0 1px rgba(124,60,255,.08) inset;
+    }
+
+    .search{
+      min-width:280px;
+      height:48px;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:12px;
+      color:white;
+      outline:none;
+      padding:0 17px;
+    }
+
+    .search::placeholder{
+      color:#667484;
+    }
+
+    .search:focus{
+      border-color:var(--purple);
+    }
+
+    /* =========================
+       TABLE
+    ========================= */
+
+    .market-table{
+      border:1px solid var(--border);
+      background:var(--panel);
+      border-radius:20px;
+      overflow:hidden;
+    }
+
+    .table-head,
+    .market-row{
+      display:grid;
+      grid-template-columns:minmax(220px,2fr) 1fr 1fr 1.25fr 90px;
+      align-items:center;
+      gap:20px;
+    }
+
+    .table-head{
+      color:#718093;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      padding:16px 24px;
+      background:#050f1a;
+      border-bottom:1px solid var(--border);
+    }
+
+    .market-row{
+      min-height:105px;
+      padding:20px 24px;
+      border-bottom:1px solid var(--border);
+      transition:.2s;
+    }
+
+    .market-row:last-child{
+      border-bottom:0;
+    }
+
+    .market-row:hover{
+      background:#091726;
+    }
+
+    .asset{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+    .coin-icon{
+      width:47px;
+      height:47px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:17px;
+      font-weight:900;
+      flex-shrink:0;
+      background:#132235;
+      color:white;
+      overflow:hidden;
+    }
+
+    .coin-icon img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .btc{background:#f7931a;}
+    .eth{background:#627eea;}
+    .sol{background:linear-gradient(135deg,#9945ff,#14f195);color:#050912;}
+    .xrp{background:#202a35;}
+    .ada{background:#174a8b;}
+    .bnb{background:#f3ba2f;color:#111;}
+    .doge{background:#c2a633;}
+    .avax{background:#e84142;}
+    .dot{background:#e6007a;}
+    .link{background:#2a5ada;}
+    .matic{background:#8247e5;}
+    .ltc{background:#345d9d;}
+    .uni{background:#ff007a;}
+    .atom{background:#2e3148;}
+    .near{background:#151c24;}
+    .stock{background:#142337;}
+    .forex{background:#0f3541;}
+    .gold{background:#b58a14;}
+    .silver{background:#384555;}
+
+    .asset-name{
+      font-size:16px;
+      font-weight:800;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .asset-symbol{
+      margin-top:4px;
+      color:var(--muted);
+      font-size:12px;
+      text-transform:uppercase;
+    }
+
+    .price{
+      font-size:16px;
+      font-weight:800;
+    }
+
+    .positive{
+      color:var(--green);
+      font-weight:700;
+    }
+
+    .negative{
+      color:var(--red);
+      font-weight:700;
+    }
+
+    .neutral{
+      color:var(--muted);
+    }
+
+    .sparkline{
+      width:100%;
+      height:45px;
+    }
+
+    .sparkline svg{
+      width:100%;
+      height:100%;
+    }
+
+    .view-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:40px;
+      padding:0 15px;
+      border-radius:9px;
+      border:1px solid rgba(155,108,255,.55);
+      color:#b994ff;
+      background:rgba(124,60,255,.06);
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    .view-btn:hover{
+      background:rgba(124,60,255,.15);
+      color:white;
+    }
+
+    .hidden{
+      display:none !important;
+    }
+
+    /* =========================
+       MOBILE CARD VIEW
+    ========================= */
+
+    .mobile-price{
+      display:none;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .market-note{
+      max-width:1250px;
+      margin:0 auto 25px;
+      padding:0 24px;
+      color:#637081;
+      font-size:12px;
+      line-height:1.7;
+    }
+
+    footer{
+      border-top:1px solid var(--border);
+      padding:35px 24px;
+      color:#687587;
+    }
+
+    .footer-inner{
+      max-width:1250px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+      font-size:13px;
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:rgba(0,0,0,.75);
+      backdrop-filter:blur(5px);
+      z-index:2000;
+    }
+
+    .modal.open{
+      display:flex;
+    }
+
+    .modal-box{
+      width:min(470px,100%);
+      background:#07121e;
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:28px;
+      position:relative;
+      box-shadow:0 30px 80px rgba(0,0,0,.45);
+    }
+
+    .modal-close{
+      position:absolute;
+      top:15px;
+      right:15px;
+      width:37px;
+      height:37px;
+      border-radius:50%;
+      background:#101f30;
+      border:1px solid var(--border);
+      color:white;
+      cursor:pointer;
+    }
+
+    .modal-symbol{
+      color:var(--purple2);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:12px;
+      margin-bottom:10px;
+    }
+
+    .modal-title{
+      font-size:28px;
+      font-weight:800;
+      margin-bottom:23px;
+    }
+
+    .modal-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .modal-stat{
+      background:#091725;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:15px;
+    }
+
+    .modal-stat small{
+      display:block;
+      color:var(--muted);
+      margin-bottom:7px;
+    }
+
+    .modal-stat strong{
+      font-size:15px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media(max-width:950px){
+
+      .desktop-nav{
+        display:none;
+      }
+
+      .header-inner{
+        min-height:100px;
+      }
+
+      .menu-btn{
+        display:flex;
+        margin-left:0;
+      }
+
+      .create-btn{
+        margin-left:auto;
+      }
+
+      .overview{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .toolbar{
+        align-items:stretch;
+        flex-direction:column;
+      }
+
+      .search{
+        min-width:100%;
+      }
+
+      .table-head{
+        display:none;
+      }
+
+      .market-table{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:14px;
+        background:transparent;
+        border:0;
+        overflow:visible;
+      }
+
+      .market-row{
+        display:block;
+        border:1px solid var(--border);
+        border-radius:17px;
+        background:var(--panel);
+        padding:20px;
+        min-height:255px;
+      }
+
+      .market-row:last-child{
+        border-bottom:1px solid var(--border);
+      }
+
+      .asset{
+        margin-bottom:19px;
+      }
+
+      .desktop-price,
+      .desktop-change{
+        display:none;
+      }
+
+      .mobile-price{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin-bottom:15px;
+      }
+
+      .sparkline{
+        height:55px;
+        margin:12px 0 15px;
+      }
+
+      .view-btn{
+        width:100%;
+      }
+    }
+
+    @media(max-width:650px){
+
+      .header-inner{
+        padding:0 22px;
+        gap:14px;
+        min-height:99px;
+      }
+
+      .brand{
+        gap:8px;
+      }
+
+      .brand-mark{
+        font-size:38px;
+        width:42px;
+      }
+
+      .brand-name{
+        font-size:26px;
+      }
+
+      .create-btn{
+        min-height:49px;
+        padding:0 18px;
+        border-radius:11px;
+        font-size:14px;
+      }
+
+      .menu-btn{
+        width:50px;
+        height:50px;
+      }
+
+      .hero{
+        padding:45px 18px 25px;
+      }
+
+      .hero-box{
+        padding:35px 26px;
+        border-radius:19px;
+      }
+
+      h1{
+        font-size:43px;
+      }
+
+      .hero p{
+        font-size:16px;
+      }
+
+      .overview{
+        padding:0 18px 25px;
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+      }
+
+      .overview-card{
+        padding:16px;
+      }
+
+      .overview-value{
+        font-size:16px;
+      }
+
+      .market-area{
+        padding:0 18px 65px;
+      }
+
+      .tabs{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .tab{
+        width:100%;
+        padding:13px 10px;
+      }
+
+      .market-table{
+        grid-template-columns:1fr;
+      }
+
+      .market-row{
+        min-height:245px;
+      }
+    }
+
+    @media(max-width:430px){
+
+      .brand-name{
+        font-size:24px;
+      }
+
+      .create-btn{
+        padding:0 14px;
+        font-size:13px;
+      }
+
+      .hero-box{
+        padding:31px 22px;
+      }
+
+      h1{
+        font-size:40px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+
+  <div class="header-inner">
+
+    <a href="index.html" class="brand">
+      <span class="brand-mark">W</span>
+      <span class="brand-name">Wfunded</span>
+    </a>
+
+    <nav class="desktop-nav">
+      <a class="active" href="markets.html">Markets</a>
+      <a href="invest.html">Invest</a>
+      <a href="platform.html">Trading Platform</a>
+      <a href="profile.html">Profile</a>
+      <a href="about.html">About Us</a>
+      <a href="support.html">Support</a>
+      <a href="register.html" class="create-btn">Create Account</a>
+    </nav>
+
+    <a class="create-btn mobile-create" href="register.html">
+      Create Account
+    </a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open navigation">
+      ☰
+    </button>
+
+  </div>
+
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="markets.html">Markets</a>
+    <a href="platform.html">Trade</a>
+    <a href="invest.html">Invest</a>
+    <a href="platform.html">Platform</a>
+    <a href="profile.html">Profile</a>
+    <a href="about.html">About Us</a>
+    <a href="support.html">Support</a>
+  </nav>
+
+</header>
+
+
+<section class="hero">
+
+  <div class="hero-box">
+
+    <div class="eyebrow">
+      Global Market Intelligence
+    </div>
+
+    <h1>Markets</h1>
+
+    <p>
+      Follow major cryptocurrencies, equities, currencies and commodities
+      through one streamlined Wfunded market interface.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section class="overview">
+
+  <div class="overview-card">
+    <div class="overview-label">Market Coverage</div>
+    <div class="overview-value">35+ Assets</div>
+    <div class="overview-sub">Across global markets</div>
+  </div>
+
+  <div class="overview-card">
+    <div class="overview-label">Crypto Assets</div>
+    <div class="overview-value">15+</div>
+    <div class="overview-sub">Automatic price updates</div>
+  </div>
+
+  <div class="overview-card">
+    <div class="overview-label">Asset Classes</div>
+    <div class="overview-value">4</div>
+    <div class="overview-sub">Crypto · Stocks · FX · Metals</div>
+  </div>
+
+  <div class="overview-card">
+    <div class="overview-label">Market Access</div>
+    <div class="overview-value">Global</div>
+    <div class="overview-sub">One professional interface</div>
+  </div>
+
+</section>
+
+
+<main class="market-area">
+
+  <div class="toolbar">
+
+    <div class="tabs">
+      <button class="tab active" data-filter="all">All</button>
+      <button class="tab" data-filter="crypto">Crypto</button>
+      <button class="tab" data-filter="stocks">Stocks</button>
+      <button class="tab" data-filter="forex">Forex</button>
+      <button class="tab" data-filter="commodities">Commodities</button>
+    </div>
+
+    <input
+      type="search"
+      id="searchInput"
+      class="search"
+      placeholder="Search markets..."
+    >
+
+  </div>
+
+
+  <div class="market-table" id="marketTable">
+
+    <div class="table-head">
+      <div>Asset</div>
+      <div>Price</div>
+      <div>24H</div>
+      <div>Trend</div>
+      <div></div>
+    </div>
+
+  </div>
+
+</main>
+
+
+<div class="market-note">
+
+  Market information is provided for informational purposes and may be delayed.
+  Cryptocurrency quotes are retrieved from external market-data services.
+  Prices should be independently verified before any financial decision.
+
+</div>
+
+
+<footer>
+
+  <div class="footer-inner">
+
+    <span>© 2026 Wfunded. All rights reserved.</span>
+
+    <span>
+      Markets · Trading · Investment Services
+    </span>
+
+  </div>
+
+</footer>
+
+
+<div class="modal" id="marketModal">
+
+  <div class="modal-box">
+
+    <button class="modal-close" id="modalClose">✕</button>
+
+    <div class="modal-symbol" id="modalSymbol"></div>
+
+    <div class="modal-title" id="modalTitle"></div>
+
+    <div class="modal-grid">
+
+      <div class="modal-stat">
+        <small>Current Price</small>
+        <strong id="modalPrice">—</strong>
+      </div>
+
+      <div class="modal-stat">
+        <small>24H Change</small>
+        <strong id="modalChange">—</strong>
+      </div>
+
+      <div class="modal-stat">
+        <small>Asset Class</small>
+        <strong id="modalType">—</strong>
+      </div>
+
+      <div class="modal-stat">
+        <small>Market Status</small>
+        <strong>Available</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  /* =================================
+     MOBILE MENU
+  ================================= */
+
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuBtn.addEventListener("click", () => {
+
+    mobileMenu.classList.toggle("open");
+
+    menuBtn.textContent =
+      mobileMenu.classList.contains("open") ? "✕" : "☰";
+
+  });
+
+
+  /* =================================
+     MARKET DATA
+  ================================= */
+
+  const markets = [
+
+    /* CRYPTO */
+
+    {
+      id:"bitcoin",
+      name:"Bitcoin",
+      symbol:"BTC",
+      category:"crypto",
+      class:"btc"
+    },
+
+    {
+      id:"ethereum",
+      name:"Ethereum",
+      symbol:"ETH",
+      category:"crypto",
+      class:"eth"
+    },
+
+    {
+      id:"solana",
+      name:"Solana",
+      symbol:"SOL",
+      category:"crypto",
+      class:"sol"
+    },
+
+    {
+      id:"ripple",
+      name:"XRP",
+      symbol:"XRP",
+      category:"crypto",
+      class:"xrp"
+    },
+
+    {
+      id:"cardano",
+      name:"Cardano",
+      symbol:"ADA",
+      category:"crypto",
+      class:"ada"
+    },
+
+    {
+      id:"binancecoin",
+      name:"BNB",
+      symbol:"BNB",
+      category:"crypto",
+      class:"bnb"
+    },
+
+    {
+      id:"dogecoin",
+      name:"Dogecoin",
+      symbol:"DOGE",
+      category:"crypto",
+      class:"doge"
+    },
+
+    {
+      id:"avalanche-2",
+      name:"Avalanche",
+      symbol:"AVAX",
+      category:"crypto",
+      class:"avax"
+    },
+
+    {
+      id:"polkadot",
+      name:"Polkadot",
+      symbol:"DOT",
+      category:"crypto",
+      class:"dot"
+    },
+
+    {
+      id:"chainlink",
+      name:"Chainlink",
+      symbol:"LINK",
+      category:"crypto",
+      class:"link"
+    },
+
+    {
+      id:"matic-network",
+      name:"Polygon",
+      symbol:"POL",
+      category:"crypto",
+      class:"matic"
+    },
+
+    {
+      id:"litecoin",
+      name:"Litecoin",
+      symbol:"LTC",
+      category:"crypto",
+      class:"ltc"
+    },
+
+    {
+      id:"uniswap",
+      name:"Uniswap",
+      symbol:"UNI",
+      category:"crypto",
+      class:"uni"
+    },
+
+    {
+      id:"cosmos",
+      name:"Cosmos",
+      symbol:"ATOM",
+      category:"crypto",
+      class:"atom"
+    },
+
+    {
+      id:"near",
+      name:"NEAR Protocol",
+      symbol:"NEAR",
+      category:"crypto",
+      class:"near"
+    },
+
+
+    /* STOCKS */
+
+    {
+      name:"Apple",
+      symbol:"AAPL",
+      category:"stocks",
+      class:"stock",
+      price:195.38,
+      change:1.47
+    },
+
+    {
+      name:"Microsoft",
+      symbol:"MSFT",
+      category:"stocks",
+      class:"stock",
+      price:425.27,
+      change:0.82
+    },
+
+    {
+      name:"NVIDIA",
+      symbol:"NVDA",
+      category:"stocks",
+      class:"stock",
+      price:126.75,
+      change:3.12
+    },
+
+    {
+      name:"Amazon",
+      symbol:"AMZN",
+      category:"stocks",
+      class:"stock",
+      price:184.72,
+      change:0.91
+    },
+
+    {
+      name:"Alphabet",
+      symbol:"GOOGL",
+      category:"stocks",
+      class:"stock",
+      price:176.31,
+      change:1.15
+    },
+
+    {
+      name:"Meta Platforms",
+      symbol:"META",
+      category:"stocks",
+      class:"stock",
+      price:510.24,
+      change:1.34
+    },
+
+    {
+      name:"Tesla",
+      symbol:"TSLA",
+      category:"stocks",
+      class:"stock",
+      price:178.64,
+      change:-0.63
+    },
+
+    {
+      name:"Netflix",
+      symbol:"NFLX",
+      category:"stocks",
+      class:"stock",
+      price:674.88,
+      change:1.02
+    },
+
+
+    /* FOREX */
+
+    {
+      name:"Euro / US Dollar",
+      symbol:"EUR/USD",
+      category:"forex",
+      class:"forex",
+      price:1.0823,
+      change:0.12
+    },
+
+    {
+      name:"British Pound / US Dollar",
+      symbol:"GBP/USD",
+      category:"forex",
+      class:"forex",
+      price:1.2748,
+      change:-0.08
+    },
+
+    {
+      name:"US Dollar / Japanese Yen",
+      symbol:"USD/JPY",
+      category:"forex",
+      class:"forex",
+      price:157.46,
+      change:0.21
+    },
+
+    {
+      name:"US Dollar / Swiss Franc",
+      symbol:"USD/CHF",
+      category:"forex",
+      class:"forex",
+      price:0.8942,
+      change:-0.14
+    },
+
+    {
+      name:"Australian Dollar / US Dollar",
+      symbol:"AUD/USD",
+      category:"forex",
+      class:"forex",
+      price:0.6658,
+      change:0.09
+    },
+
+
+    /* COMMODITIES */
+
+    {
+      name:"Gold",
+      symbol:"XAU",
+      category:"commodities",
+      class:"gold",
+      price:2356.10,
+      change:0.75
+    },
+
+    {
+      name:"Silver",
+      symbol:"XAG",
+      category:"commodities",
+      class:"silver",
+      price:29.44,
+      change:-0.32
+    },
+
+    {
+      name:"WTI Crude Oil",
+      symbol:"WTI",
+      category:"commodities",
+      class:"gold",
+      price:78.42,
+      change:0.58
+    },
+
+    {
+      name:"Brent Crude Oil",
+      symbol:"BRENT",
+      category:"commodities",
+      class:"gold",
+      price:82.61,
+      change:0.37
+    }
+
+  ];
+
+
+  /* =================================
+     PRICE FORMAT
+  ================================= */
+
+  function formatPrice(price){
+
+    if(price === undefined || price === null){
+      return "Loading...";
+    }
+
+    if(price >= 1000){
+      return "$" + price.toLocaleString(
+        "en-US",
+        {
+          minimumFractionDigits:2,
+          maximumFractionDigits:2
+        }
+      );
+    }
+
+    if(price >= 1){
+      return "$" + price.toLocaleString(
+        "en-US",
+        {
+          minimumFractionDigits:2,
+          maximumFractionDigits:4
+        }
+      );
+    }
+
+    return "$" + Number(price).toFixed(6);
+
+  }
+
+
+  function formatChange(change){
+
+    if(change === undefined || change === null){
+      return "—";
+    }
+
+    const sign = change > 0 ? "+" : "";
+
+    return sign + Number(change).toFixed(2) + "%";
+
+  }
+
+
+  /* =================================
+     SPARKLINE
+  ================================= */
+
+  function createSparkline(change){
+
+    const positive = Number(change || 0) >= 0;
+
+    const stroke =
+      positive ? "#25d98a" : "#ff4f65";
+
+    const up =
+      "5,34 32,29 59,32 86,20 113,23 140,14 167,18 194,10 221,14 248,8 275,12 300,6";
+
+    const down =
+      "5,10 32,16 59,14 86,24 113,21 140,33 167,29 194,40 221,34 248,42 275,46 300,49";
+
+    const points =
+      positive ? up : down;
+
+    return `
+      <svg
+        viewBox="0 0 305 55"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <polyline
+          points="${points}"
+          fill="none"
+          stroke="${stroke}"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    `;
+
+  }
+
+
+  /* =================================
+     RENDER MARKETS
+  ================================= */
+
+  const table =
+    document.getElementById("marketTable");
+
+  function renderMarkets(){
+
+    document
+      .querySelectorAll(".market-row")
+      .forEach(row => row.remove());
+
+    markets.forEach((market,index)=>{
+
+      const row =
+        document.createElement("div");
+
+      row.className = "market-row";
+
+      row.dataset.category =
+        market.category;
+
+      row.dataset.search =
+        `${market.name} ${market.symbol}`.toLowerCase();
+
+      const changeClass =
+        Number(market.change || 0) >= 0
+        ? "positive"
+        : "negative";
+
+      const iconText =
+        market.symbol.length <= 4
+        ? market.symbol.charAt(0)
+        : "•";
+
+      row.innerHTML = `
+
+        <div class="asset">
+
+          <div class="coin-icon ${market.class}">
+            ${iconText}
+          </div>
+
+          <div>
+
+            <div class="asset-name">
+              ${market.name}
+            </div>
+
+            <div class="asset-symbol">
+              ${market.symbol}
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="price desktop-price">
+          ${formatPrice(market.price)}
+        </div>
+
+
+        <div class="${changeClass} desktop-change">
+          ${formatChange(market.change)}
+        </div>
+
+
+        <div class="mobile-price">
+
+          <span class="price">
+            ${formatPrice(market.price)}
+          </span>
+
+          <span class="${changeClass}">
+            ${formatChange(market.change)}
+          </span>
+
+        </div>
+
+
+        <div class="sparkline">
+          ${createSparkline(market.change)}
+        </div>
+
+
+        <button
+          class="view-btn"
+          onclick="openMarket(${index})"
+        >
+          View
+        </button>
+
+      `;
+
+      table.appendChild(row);
+
+    });
+
+  }
+
+  renderMarkets();
+
+
+  /* =================================
+     LIVE CRYPTO
+  ================================= */
+
+  async function loadCryptoPrices(){
+
+    const ids = markets
+      .filter(m => m.category === "crypto")
+      .map(m => m.id)
+      .join(",");
+
+    try{
+
+      const url =
+        "https://api.coingecko.com/api/v3/simple/price" +
+        "?ids=" + ids +
+        "&vs_currencies=usd" +
+        "&include_24hr_change=true";
+
+      const response =
+        await fetch(url);
+
+      if(!response.ok){
+        throw new Error("Market data unavailable");
+      }
+
+      const data =
+        await response.json();
+
+      markets.forEach(market=>{
+
+        if(
+          market.category === "crypto" &&
+          data[market.id]
+        ){
+
+          market.price =
+            data[market.id].usd;
+
+          market.change =
+            data[market.id].usd_24h_change;
+
+        }
+
+      });
+
+      renderMarkets();
+      applyCurrentFilter();
+
+    }
+
+    catch(error){
+
+      console.log(
+        "Crypto price update unavailable:",
+        error
+      );
+
+    }
+
+  }
+
+  loadCryptoPrices();
+
+
+  /* refresh every 60 seconds */
+
+  setInterval(
+    loadCryptoPrices,
+    60000
+  );
+
+
+  /* =================================
+     FILTERS
+  ================================= */
+
+  let currentFilter = "all";
+
+  const tabs =
+    document.querySelectorAll(".tab");
+
+  const searchInput =
+    document.getElementById("searchInput");
+
+  tabs.forEach(tab=>{
+
+    tab.addEventListener("click",()=>{
+
+      tabs.forEach(t=>
+        t.classList.remove("active")
+      );
+
+      tab.classList.add("active");
+
+      currentFilter =
+        tab.dataset.filter;
+
+      applyCurrentFilter();
+
+    });
+
+  });
+
+
+  searchInput.addEventListener(
+    "input",
+    applyCurrentFilter
+  );
+
+
+  function applyCurrentFilter(){
+
+    const search =
+      searchInput.value
+      .trim()
+      .toLowerCase();
+
+    document
+      .querySelectorAll(".market-row")
+      .forEach(row=>{
+
+        const categoryMatch =
+          currentFilter === "all" ||
+          row.dataset.category === currentFilter;
+
+        const searchMatch =
+          row.dataset.search.includes(search);
+
+        row.classList.toggle(
+          "hidden",
+          !(categoryMatch && searchMatch)
+        );
+
+      });
+
+  }
+
+
+  /* =================================
+     MARKET MODAL
+  ================================= */
+
+  const modal =
+    document.getElementById("marketModal");
+
+  const modalClose =
+    document.getElementById("modalClose");
+
+
+  function openMarket(index){
+
+    const market =
+      markets[index];
+
+    document.getElementById(
+      "modalSymbol"
+    ).textContent = market.symbol;
+
+    document.getElementById(
+      "modalTitle"
+    ).textContent = market.name;
+
+    document.getElementById(
+      "modalPrice"
+    ).textContent =
+      formatPrice(market.price);
+
+    const change =
+      document.getElementById(
+        "modalChange"
+      );
+
+    change.textContent =
+      formatChange(market.change);
+
+    change.className =
+      Number(market.change || 0) >= 0
+      ? "positive"
+      : "negative";
+
+    document.getElementById(
+      "modalType"
+    ).textContent =
+      market.category.charAt(0).toUpperCase() +
+      market.category.slice(1);
+
+    modal.classList.add("open");
+
+  }
+
+
+  modalClose.addEventListener(
+    "click",
+    ()=>modal.classList.remove("open")
+  );
+
+
+  modal.addEventListener(
+    "click",
+    e=>{
+
+      if(e.target === modal){
+        modal.classList.remove("open");
+      }
+
+    }
+  );
+
+</script>
+
+</body>
+</html>      grid-template-columns: 2fr 1fr 1fr 1.5fr .8fr;
       align-items: center;
       gap: 14px;
       padding: 16px 18px;
